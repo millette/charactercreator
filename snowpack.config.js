@@ -10,7 +10,6 @@ module.exports = {
     "run:sass::watch": "$1 --watch",
   },
   devOptions: {
-    // fallback: "index.html",
     bundle: false,
     open: "none",
     hmr: false,
