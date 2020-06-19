@@ -1,3 +1,4 @@
+import { interpretHash } from "src/js/parse_hash.js"
 
 // Change sex of character from male to female or vice versa.
 function trans(sex){
@@ -46,7 +47,7 @@ function resetForms() {
     showSidebarLeft();
 }
 
-function Character(choices){
+export function Character(choices){
     this.choices = choices || {
         emotion : 'neutral',
         body : 'default', // Or 'default' or 'veiny'.
@@ -335,3 +336,5 @@ function sectionHide(multiLayer, id) {
         }
     };
 }
+
+// export Character
