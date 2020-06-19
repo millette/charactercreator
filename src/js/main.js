@@ -1,5 +1,24 @@
-  window.onload = function() {
-    var c; //Main variable to hold user choices and preferences
+import { Character } from "src/js/logic.js"
+import { parseHash, interpretHash } from "src/js/parse_hash.js"
+
+
+// copied from hash.min.js
+(function(a,b){"use strict";var c=function(){var b=function(){var b=a.location.hash?a.location.hash.substr(1).split("&"):[],c={};for(var d=0;d<b.length;d++){var e=b[d].split("=");c[e[0]]=decodeURIComponent(e[1])}return c};var c=function(b){var c=[];for(var d in b){c.push(d+"="+encodeURIComponent(b[d]))}a.location.hash=c.join("&")};return{get:function(a){var c=b();if(a){return c[a]}else{return c}},add:function(a){var d=b();for(var e in a){d[e]=a[e]}c(d)},remove:function(a){a=typeof a=="string"?[a]:a;var d=b();for(var e=0;e<a.length;e++){delete d[a[e]]}c(d)},clear:function(){c({})}}}();a.hash=c})(window);
+
+
+
+var c; //Main variable to hold user choices and preferences
+
+// var currentUser;
+
+// copied from login.js
+var myUsername = false
+var currentUser = false
+var personnages = {}
+var personnageActuel = false
+
+window.onload = function() {
+    // var c; //Main variable to hold user choices and preferences
     var aboutBtn = document.querySelector("#aboutButton");
     var faqBtn = document.querySelector("#faqButton");
     var shopBtn = document.querySelector("#shopButton");
@@ -14,7 +33,7 @@
     var maleSilhouette = document.getElementById("male_silhouette");
     var femaleSilhouette = document.getElementById("female_silhouette");
     var rightSidebar = document.querySelector('#sidebar');
-    var rightSidebarClone = rightSidebar.cloneNode(true);
+    // var rightSidebarClone = rightSidebar.cloneNode(true);
     var svgContainer = document.querySelector('#svg1');
     var patreonLink = document.querySelector('#patreonButton');
     var patreonBtn = document.querySelector('#patreon-btn');
@@ -447,7 +466,8 @@ function startup() {
     if (currentUser && currentUser.cc && currentUser.cc.personnages && currentUser.cc.personnageActuel) {
         choices = currentUser.cc.personnages[currentUser.cc.personnageActuel];
     }
-    window.c = new Character(choices);
+    // window.c = new Character(choices);
+    c = new Character(choices);
     interpretHash();
 }
 
