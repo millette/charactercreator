@@ -1,23 +1,31 @@
 import { Character } from "src/js/logic.js"
 import { parseHash, interpretHash } from "src/js/parse_hash.js"
-
+// import { layersFemale, layersMale } from "src/js/globals.js"
+import layersFemale from "src/js/layers-female.js"
+import layersMale from "src/js/layers-male.js"
 
 // copied from hash.min.js
 (function(a,b){"use strict";var c=function(){var b=function(){var b=a.location.hash?a.location.hash.substr(1).split("&"):[],c={};for(var d=0;d<b.length;d++){var e=b[d].split("=");c[e[0]]=decodeURIComponent(e[1])}return c};var c=function(b){var c=[];for(var d in b){c.push(d+"="+encodeURIComponent(b[d]))}a.location.hash=c.join("&")};return{get:function(a){var c=b();if(a){return c[a]}else{return c}},add:function(a){var d=b();for(var e in a){d[e]=a[e]}c(d)},remove:function(a){a=typeof a=="string"?[a]:a;var d=b();for(var e=0;e<a.length;e++){delete d[a[e]]}c(d)},clear:function(){c({})}}}();a.hash=c})(window);
 
 
 
-var c; //Main variable to hold user choices and preferences
+// var c; //Main variable to hold user choices and preferences
 
-// var currentUser;
+var currentUser;
 
 // copied from login.js
+/*
 var myUsername = false
 var currentUser = false
 var personnages = {}
 var personnageActuel = false
+*/
 
 window.onload = function() {
+    // make it global
+    window.layersFemale = layersFemale
+    window.layersMale = layersMale
+
     // var c; //Main variable to hold user choices and preferences
     var aboutBtn = document.querySelector("#aboutButton");
     var faqBtn = document.querySelector("#faqButton");
@@ -156,7 +164,7 @@ function resetCharacter() {
   // Clean hash.
   // Fade in SVG.
   // Clear 'c' variable.
-  c = new Character(choices);
+  window.c = new Character(choices);
   setTimeout(function(){fadeInSVG();}, 300);
   // launch anew.
   relaunch();
@@ -302,7 +310,7 @@ function clickSelect(ev) {
   // Don't take the click while in the style selection screen.
   // if (faceContainer.style.opacity === '1') {return}
 
-  if (c.choices.sex === undefined) {return}
+  if (window.c.choices.sex === undefined) {return}
 
   prefix = fromItemGetPrefix(el.id);
   formSection = fromPrefixGetFormSection(prefix);
@@ -339,7 +347,7 @@ function clickSelect(ev) {
 
 function getSectionButton(formSection, prefix) {
   var keyCounter = 0;
-  if (c.choices.sex ==='m') {
+  if (window.c.choices.sex ==='m') {
     formList = window.maleFormList;
   } else {
     formList = window.femaleFormList;
@@ -356,11 +364,14 @@ function getSectionButton(formSection, prefix) {
 function getLayers() {
   var layers;
 
-  if (c.choices.sex === 'm') {
-    layers = window.layersMale;
-  } else if (c.choices.sex === 'f') {
-    layers = window.layersFemale;
+  if (window.c.choices.sex === 'm') {
+    console.log("getLayers: m")
+    layers = layersMale;
+  } else if (window.c.choices.sex === 'f') {
+    console.log("getLayers: f")
+    layers = layersFemale;
   } else {
+    console.log("getLayers: hmm")
     return document.querySelector('#svg1 #character-container');
   }
 
@@ -369,6 +380,8 @@ function getLayers() {
 
 function getGroupParent(el) {
   var layers = getLayers();
+  console.log("getGroupParent", el.id, el)
+  console.log("layers", layers)
   while (layers.indexOf(el.id) === -1 && el.tagName != 'svg') {
     el = el.parentNode;
   }
@@ -440,7 +453,7 @@ function fromPrefixGetFormSection(prefix) {
   var counterSection;
   var formList;
 
-  if (c.choices.sex === 'm') {
+  if (window.c.choices.sex === 'm') {
     formList = window.maleFormList;
   } else {
     formList = window.femaleFormList;
@@ -466,14 +479,14 @@ function startup() {
     if (currentUser && currentUser.cc && currentUser.cc.personnages && currentUser.cc.personnageActuel) {
         choices = currentUser.cc.personnages[currentUser.cc.personnageActuel];
     }
-    // window.c = new Character(choices);
-    c = new Character(choices);
+    window.c = new Character(choices);
+    // c = new Character(choices);
     interpretHash();
 }
 
 function launch() {
-    c.choices.sex  = hash.get('sex');
-    var sex = c.choices.sex;
+    window.c.choices.sex  = hash.get('sex');
+    var sex = window.c.choices.sex;
     var multiLayer = getMultiLayer();
     var hairLayers = getHairLayers();
     var skinLayers = getSkinLayers();
@@ -499,9 +512,9 @@ function launch() {
     window.forms = [form1, form2, form3, form4, form5,form6];
     // Get all the hash key/value pairs and include them in the c.choices object
     // Go through all the forms
-    parseHash(c, forms, skinLayers, hairLayers);  //Hashed elements are added in the character object
-    choicesToList(c);
-    toBeShown = choicesToLayers(c, multiLayer);
+    parseHash(window.c, forms, skinLayers, hairLayers);  //Hashed elements are added in the character object
+    choicesToList(window.c);
+    toBeShown = choicesToLayers(window.c, multiLayer);
     Promise.resolve().then(function(){loadFilesFromList(toBeShown);}).then(function(){onAllLoaded();}).then(function(){applyClipPath();});
 }
 
@@ -537,7 +550,7 @@ function chooseSkinColor() {
 }
 
 function defaultPupilShape() {
-  c.choices['pupils'] = 'round';
+  window.c.choices['pupils'] = 'round';
   hash.add({ pupils: 'round' });
 }
 
@@ -590,7 +603,7 @@ function colorCutout(newColor) {
 }
 
 function selectMale(event) {
-    c.choices.sex = "m";
+    window.c.choices.sex = "m";
     var maleRadioBtn = document.querySelector('#mButton');
     var mainSVG = document.querySelector('#svg1');
     var maleSilhouette = document.querySelector("#male_silhouette");
@@ -625,7 +638,7 @@ function addTopicalItem() {
 }
 
 function addDecency() {
-  var sex = c.choices.sex;
+  var sex = window.c.choices.sex;
   if (sex === 'm') {
     // TODO add underwear here.
   } else if (sex === 'f') {
@@ -635,7 +648,7 @@ function addDecency() {
 }
 
 function selectFemale(event) {
-    c.choices.sex = "f";
+    window.c.choices.sex = "f";
     var femaleRadioBtn = document.querySelector('#fButton');
     var mainSVG = document.querySelector('#svg1');
     var maleSilhouette = document.querySelector("#male_silhouette");
@@ -666,7 +679,7 @@ function selectFemale(event) {
 }
 
 function presentFaceStyles() {
-  var sex = c.choices.sex;
+  var sex = window.c.choices.sex;
   console.log('sex', sex);
   console.log('presentFaceStyles');
   var faceWestern;
