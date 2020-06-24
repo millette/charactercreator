@@ -84,7 +84,6 @@ function populateThumbs (svgObject) {
   var groupRank
   var parentEl
   var groupInPlace
-  var counter
   var loopRank
   var splitArray
   var openedDrawer
