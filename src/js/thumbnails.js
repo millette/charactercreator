@@ -6,8 +6,9 @@
 export function openThumbs () {
   // FIXME: import...
   window.hideColorPicker()
-  var _ = this
-  openThumbsLogic(_)
+  // var _ = this
+  // openThumbsLogic(_)
+  openThumbsLogic(this)
 }
 
 /*
@@ -157,8 +158,9 @@ function populateThumbs (svgObject) {
 }
 
 function showThumbOptions (_) {
-  var _ = _.target || _
-  var showOptionThumbs = document.querySelector('.options__' + _.innerHTML.toLowerCase())
+  // FIXME: ugly var name
+  var _2 = _.target || _
+  var showOptionThumbs = document.querySelector('.options__' + _2.innerHTML.toLowerCase())
   var allOptions = document.querySelectorAll('.options__container')
   var i = allOptions.length
   var sectionSelected = document.querySelector('.section--selected')
