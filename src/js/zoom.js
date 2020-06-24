@@ -14,7 +14,7 @@ function zoomIn () {
   var sex = c.choices.sex
   var newViewBox
   shape = document.getElementById(('svg1'))
-  if (sex == 'm') {
+  if (sex === 'm') {
     newViewBox = '140 73 290 290'
   } else {
     newViewBox = '225 86 110 110'
@@ -34,7 +34,7 @@ function zoomFace () {
   var newViewBox
   shape = document.getElementById(('svg1'))
   // TODO Consider size of window where rezooming.
-  if (sex == 'm') {
+  if (sex === 'm') {
     newViewBox = '242.6 99 80 80'
   } else {
     newViewBox = '243 109 80 80'
@@ -48,7 +48,7 @@ function zoomTwoFaces () {
   var newViewBox
   shape = document.getElementById(('svg1'))
   // TODO Consider size of window where rezooming.
-  if (sex == 'm') {
+  if (sex === 'm') {
     newViewBox = '242.6 90 80 80'
   } else {
     newViewBox = '243 100 80 80'
@@ -61,7 +61,7 @@ function zoomTorso () {
   var sex = c.choices.sex
   var newViewBox
   shape = document.getElementById(('svg1'))// var =  "svg1" or "lg_face", etc.
-  if (sex == 'm') {
+  if (sex === 'm') {
     newViewBox = '204 85 150 150'
   } else {
     newViewBox = '207 97 150 150'
@@ -73,7 +73,7 @@ function zoomBody () {
   var sex = c.choices.sex
   var newViewBox
   shape = document.getElementById(('svg1'))
-  if (sex == 'm') {
+  if (sex === 'm') {
     newViewBox = '136 73 290 290'
   } else {
     newViewBox = '140 84 290 290'
@@ -90,14 +90,14 @@ function zoomFull () {
 }
 
 function viewBoxZoom (ev) {
-  var zoomLevel = ev.target.value
-  if (zoomLevel == 3) {
+  var zoomLevel = parseInt(ev.target.value, 10)
+  if (zoomLevel === 3) {
     zoomFace()
-  } else if (zoomLevel == 2) {
+  } else if (zoomLevel === 2) {
     zoomTorso()
-  } else if (zoomLevel == 1) {
+  } else if (zoomLevel === 1) {
     zoomBody()
-  } else if (zoomLevel == 0) {
+  } else if (zoomLevel === 0) {
     zoomFull()
   }
 }
