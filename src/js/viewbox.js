@@ -1,6 +1,6 @@
 export function getViewBox (t, d) {
   var id = t + '_' + d
-  var sex = c.choices.sex
+  var sex = window.c.choices.sex
   if (sex === 'm') {
     var idDict = {
       armband_bandage_right: '181 235 81 81',
