@@ -13,10 +13,13 @@ export function clearSidebarLeft () {
   sidebarLeft.innerHTML = ''
 }
 
+/*
+// TODO: unused, remove
 function showSidebarRight () {
   var sidebarLeft = document.querySelector('#sidebar')
   sidebarLeft.classList.add('visible')
 }
+*/
 
 export function hideSidebarRight () {
   var sidebarLeft = document.querySelector('#sidebar')
