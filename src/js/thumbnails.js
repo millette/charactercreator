@@ -1,4 +1,5 @@
 // TODO: import { hideColorPicker } from "colorpicker.js"
+// TODO: import { getSectionLayersList } from "form.js"
 
 // Functions for the thumbnails in the right sidebar.
 export function openThumbs () {
@@ -29,7 +30,8 @@ function calcViewBox (svgObject) {
 
 function openThumbsLogic (_) {
   var section = _.innerHTML
-  var layersList = getSectionLayersList(section)
+  // FIXME: import...
+  var layersList = window.getSectionLayersList(section)
   var sectionLowerCase = section.toLowerCase()
   var previousSelection = document.querySelector('.section--selected')
 
