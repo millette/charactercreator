@@ -10,6 +10,7 @@ function isLandscape () {
   return isLandscape
 }
 
+/*
 function zoomIn () {
   var sex = c.choices.sex
   var newViewBox
@@ -27,6 +28,7 @@ function zoomOut () {
   shape = document.getElementById(('svg1'))
   animateZoom(newViewBox)
 }
+*/
 
 function zoomFace () {
   var landscape = isLandscape() // TODO change newViewBox is in landscape mode.
@@ -89,7 +91,7 @@ function zoomFull () {
   animateZoom(newViewBox)
 }
 
-function viewBoxZoom (ev) {
+export function viewBoxZoom (ev) {
   var zoomLevel = parseInt(ev.target.value, 10)
   if (zoomLevel === 3) {
     zoomFace()
@@ -102,7 +104,7 @@ function viewBoxZoom (ev) {
   }
 }
 
-function sectionZoom (sectionLabel) {
+export function sectionZoom (sectionLabel) {
   var zoomInput = document.querySelector('#zoomLevel')
   if (sectionLabel === 'Head') { zoomInput.value = 3; zoomFace() }
   if (sectionLabel === 'Accessories') { zoomInput.value = 3; zoomFace() }
