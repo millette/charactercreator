@@ -1,5 +1,5 @@
 // TODO: import { hideColorPicker } from "colorpicker.js"
-// TODO: import { getSectionLayersList } from "form.js"
+// TODO: import { getSectionLayersList, loadSectionLayers } from "form.js"
 // TODO: import { purgeHiddenLayers } from "layers.js"
 
 // Functions for the thumbnails in the right sidebar.
@@ -46,7 +46,8 @@ function openThumbsLogic (_) {
     previousSelection.classList.remove('section--selected')
   };
 
-  loadSectionLayers(sectionLowerCase, layersList, populateThumbs, true)
+  // FIXME: import...
+  window.loadSectionLayers(sectionLowerCase, layersList, populateThumbs, true)
   showThumbOptions(_)
   _.classList.add('section--selected')
 
