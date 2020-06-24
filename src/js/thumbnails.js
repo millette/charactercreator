@@ -1,10 +1,14 @@
+// TODO: import { hideColorPicker } from "colorpicker.js"
+
 // Functions for the thumbnails in the right sidebar.
 export function openThumbs () {
-  hideColorPicker()
+  // FIXME: import...
+  window.hideColorPicker()
   var _ = this
   openThumbsLogic(_)
 }
 
+/*
 function calcViewBox (svgObject) {
   // TODO Calculate the view Box automatically to make creating new items easier
   var viewBox
@@ -21,6 +25,7 @@ function calcViewBox (svgObject) {
 
   return viewBox
 }
+*/
 
 function openThumbsLogic (_) {
   var section = _.innerHTML
