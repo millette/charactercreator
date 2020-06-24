@@ -1,5 +1,5 @@
 // TODO: import { hideColorPicker } from "colorpicker.js"
-// TODO: import { getSectionLayersList, loadSectionLayers } from "form.js"
+// TODO: import { getSectionLayersList, loadSectionLayers, getPupilShape } from "form.js"
 // TODO: import { purgeHiddenLayers } from "layers.js"
 
 // Functions for the thumbnails in the right sidebar.
@@ -137,7 +137,8 @@ function populateThumbs (svgObject) {
     if (layerID === 'eyeball_right') {
       openedDrawer = document.querySelector('.selected--option').classList
       if (openedDrawer.contains('options__iris')) {
-        pupilShape = getPupilShape()
+        // FIXME: import...
+        pupilShape = window.getPupilShape()
         thumbObject = showPupilObject(thumbObject, pupilShape)
         layerID = 'iris_default'
         document.querySelector('#content_1 .' + layerID).appendChild(thumbObject)
