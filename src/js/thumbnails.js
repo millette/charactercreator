@@ -147,7 +147,7 @@ function populateThumbs (svgObject) {
       if (openedDrawer.contains('options__pupils')) {
         while (counter--) {
           // FIXME: import...
-          pupilObject = window.showPupilObject(thumbObject, pupilShapeList[counter]).cloneNode(true)
+          var pupilObject = window.showPupilObject(thumbObject, pupilShapeList[counter]).cloneNode(true)
           document.querySelector('#content_1 .pupils_' + pupilShapeList[counter]).appendChild(pupilObject)
         }
       }
