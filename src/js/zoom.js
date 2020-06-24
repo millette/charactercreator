@@ -47,7 +47,7 @@ function zoomFace () {
   animateZoom(newViewBox)
 }
 
-function zoomTwoFaces () {
+export function zoomTwoFaces () {
   // var landscape = isLandscape() // TODO change newViewBox is in landscape mode.
   var sex = c.choices.sex
   var newViewBox
