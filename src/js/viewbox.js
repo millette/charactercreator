@@ -1,8 +1,9 @@
 export function getViewBox (t, d) {
   var id = t + '_' + d
   var sex = window.c.choices.sex
+  var idDict
   if (sex === 'm') {
-    var idDict = {
+    idDict = {
       armband_bandage_right: '181 235 81 81',
       armband_bandage_left: '296 239 81 81',
       body_athletic: '65 130 430 430',
@@ -94,7 +95,7 @@ export function getViewBox (t, d) {
       wings: '110 -30 350 350'
     }
   } else if (sex === 'f') {
-    var idDict = {
+    idDict = {
       armband_bandage_right: '186 238 81 81',
       armband_bandage_left: '301 229 81 81',
       armband_egyptian_right: '221 205 38 38',
