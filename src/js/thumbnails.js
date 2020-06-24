@@ -57,7 +57,7 @@ function openThumbsLogic (_) {
   var sidebarLeft = document.querySelector('#sidebar-left')
   var sidebarRight = document.querySelector('.sidebar-right')
 
-  if (thumbSectionBtn.classList === undefined && thumbSectionBtn.previousSibling.classList != undefined) {
+  if (thumbSectionBtn.classList === undefined && thumbSectionBtn.previousSibling.classList !== undefined) {
     thumbSectionBtn = thumbSectionBtn.previousSibling
   }
   thumbSectionBtn = thumbSectionBtn.querySelector('.accordeon__svg-container')
@@ -119,10 +119,10 @@ function populateThumbs (svgObject) {
     }
   } else if (emotion) {
     splitArray = layerID.split('_')
-    if (layerID != 'eyeballs_default') {
+    if (layerID !== 'eyeballs_default') {
       document.querySelector('#content_1 ' + '.emotion_' + splitArray[splitArray.length - 1]).appendChild(thumbObject)
     }
-  } else if (layerID.slice(0, 4) === 'body' && layerID.slice(5, 9) != 'head') {
+  } else if (layerID.slice(0, 4) === 'body' && layerID.slice(5, 9) !== 'head') {
     console.log('layerID', layerID)
     if (layerID.slice(-5) === 'fault') {
       document.querySelector('#content_1 .' + 'body_default').appendChild(thumbObject)
