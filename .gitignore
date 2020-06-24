@@ -4,3 +4,8 @@ log
 bower_components
 .DS_Store
 shop.js
+build/
+cc-v2.code-workspace
+css/
+target-ungit/
+to-lint.txt
