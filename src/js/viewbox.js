@@ -221,11 +221,11 @@ export function getViewBox (t, d) {
       wings: '110 -30 350 350'
     }
   }
-  if (idDict[id] && d != '') {
+  if (idDict[id] && d !== '') {
     return idDict[id]
-  } else if (sectionDict[t] && d != '') {
-    return sectionDict[t]
-  } else {
-    return '0 0 560 560'
   }
+  if (sectionDict[t] && d !== '') {
+    return sectionDict[t]
+  }
+  return '0 0 560 560'
 }
