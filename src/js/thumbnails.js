@@ -1,7 +1,5 @@
-
 // Functions for the thumbnails in the right sidebar.
-
-function openThumbs () {
+export function openThumbs () {
   hideColorPicker()
   var _ = this
   openThumbsLogic(_)
