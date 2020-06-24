@@ -1,5 +1,6 @@
 // TODO: import { hideColorPicker } from "colorpicker.js"
 // TODO: import { getSectionLayersList } from "form.js"
+// TODO: import { purgeHiddenLayers } from "layers.js"
 
 // Functions for the thumbnails in the right sidebar.
 export function openThumbs () {
@@ -41,7 +42,7 @@ function openThumbsLogic (_) {
   }
 
   if (previousSelection != null) {
-    purgeHiddenLayers()
+    window.purgeHiddenLayers()
     previousSelection.classList.remove('section--selected')
   };
 
