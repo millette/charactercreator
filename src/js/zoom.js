@@ -63,10 +63,10 @@ export function zoomTwoFaces () {
 }
 
 function zoomTorso () {
-  var sex = c.choices.sex
+  // var sex = c.choices.sex
   var newViewBox
   shape = document.getElementById(('svg1'))// var =  "svg1" or "lg_face", etc.
-  if (sex === 'm') {
+  if (c.choices.sex === 'm') {
     newViewBox = '204 85 150 150'
   } else {
     newViewBox = '207 97 150 150'
@@ -87,7 +87,7 @@ function zoomBody () {
 }
 
 function zoomFull () {
-  var sex = c.choices.sex
+  // var sex = c.choices.sex
   var newViewBox
   shape = document.getElementById(('svg1'))
   newViewBox = '10 50 540 540'
