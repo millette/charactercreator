@@ -1,3 +1,5 @@
+// TODO: lint later
+
 // Used in index.html
 export function random () {
   var forms = window.forms
