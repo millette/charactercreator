@@ -1,4 +1,5 @@
-function random () {
+// Used in index.html
+export function random () {
   var forms = window.forms
   var formLen = forms.length
   var formRand = Math.floor((Math.random() * formLen))
