@@ -1,4 +1,4 @@
-function parseHash (c, forms, skinLayers, hairLayers) {
+export function parseHash (c, forms, skinLayers, hairLayers) {
   newParseHash()
   var formsLength = forms.length
   var formsCounter = formsLength
