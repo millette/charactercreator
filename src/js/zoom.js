@@ -1,3 +1,5 @@
+/*
+// FIXME: doesn't do anything..? Function and var have same name...
 function isLandscape () {
   var w = window
   var d = document
@@ -9,6 +11,7 @@ function isLandscape () {
   if (x > y) { isLandscape = true } else { isLandscape = false }
   return isLandscape
 }
+*/
 
 /*
 function zoomIn () {
@@ -31,7 +34,7 @@ function zoomOut () {
 */
 
 function zoomFace () {
-  var landscape = isLandscape() // TODO change newViewBox is in landscape mode.
+  // var landscape = isLandscape() // TODO change newViewBox is in landscape mode.
   var sex = c.choices.sex
   var newViewBox
   shape = document.getElementById(('svg1'))
@@ -45,7 +48,7 @@ function zoomFace () {
 }
 
 function zoomTwoFaces () {
-  var landscape = isLandscape() // TODO change newViewBox is in landscape mode.
+  // var landscape = isLandscape() // TODO change newViewBox is in landscape mode.
   var sex = c.choices.sex
   var newViewBox
   shape = document.getElementById(('svg1'))
