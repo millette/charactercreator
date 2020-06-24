@@ -1,6 +1,6 @@
 // TODO: import { hideColorPicker } from "colorpicker.js"
 // TODO: import { getSectionLayersList, loadSectionLayers, getPupilShape } from "form.js"
-// TODO: import { purgeHiddenLayers } from "layers.js"
+// TODO: import { purgeHiddenLayers, showPupilObject } from "layers.js"
 
 // Functions for the thumbnails in the right sidebar.
 export function openThumbs () {
@@ -139,13 +139,15 @@ function populateThumbs (svgObject) {
       if (openedDrawer.contains('options__iris')) {
         // FIXME: import...
         pupilShape = window.getPupilShape()
-        thumbObject = showPupilObject(thumbObject, pupilShape)
+        // FIXME: import...
+        thumbObject = window.showPupilObject(thumbObject, pupilShape)
         layerID = 'iris_default'
         document.querySelector('#content_1 .' + layerID).appendChild(thumbObject)
       }
       if (openedDrawer.contains('options__pupils')) {
         while (counter--) {
-          pupilObject = showPupilObject(thumbObject, pupilShapeList[counter]).cloneNode(true)
+          // FIXME: import...
+          pupilObject = window.showPupilObject(thumbObject, pupilShapeList[counter]).cloneNode(true)
           document.querySelector('#content_1 .pupils_' + pupilShapeList[counter]).appendChild(pupilObject)
         }
       }
