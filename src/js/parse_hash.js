@@ -1,3 +1,5 @@
+// TODO: import { modCharacter } from logic.js
+
 export function parseHash (c, forms, skinLayers, hairLayers) {
   newParseHash()
   var formsLength = forms.length
@@ -13,7 +15,8 @@ export function parseHash (c, forms, skinLayers, hairLayers) {
     for (var x in forms[f]) {
       var section = x.toLowerCase()
       if (section === 'pupils') {
-        modCharacter(section, hashData)
+        // FIXME: import...
+        window.modCharacter(section, hashData)
       }
       if (section === 'brows' || section === 'eyes' || section === 'mouth' || section === 'lashes' || section === 'sockets') {
         var hashData = hash.get('emotion')
@@ -25,10 +28,12 @@ export function parseHash (c, forms, skinLayers, hairLayers) {
       }
       var id = section + '_' + hashData
       if (hashData != undefined) {
-        modCharacter(section, hashData)
+        // FIXME: import...
+        window.modCharacter(section, hashData)
         // ga('send', 'event', 'hash', 'select', id);
       } else if (section === 'brows' || section === 'eyes' || section === 'mouth' || section === 'lashes' || section === 'sockets') {
-        modCharacter(section, 'neutral')
+        // FIXME: import...
+        window.modCharacter(section, 'neutral')
       };
       if (id in skinLayers || section === 'body') {
         section = 'skin'
@@ -41,23 +46,28 @@ export function parseHash (c, forms, skinLayers, hairLayers) {
       hashColorEpsilon = hash.get(section + 'Color-eps')
 
       if (hashColor != undefined && hashColor != '') {
-        modCharacter(section + 'Color', hashColor)
+        // FIXME: import...
+        window.modCharacter(section + 'Color', hashColor)
         // ga('send', 'event', 'hash', 'color', section+'_'+hashColor );
       };
       if (hashColorBeta != undefined && hashColorBeta != '') {
-        modCharacter(section + 'Color-bet', hashColorBeta)
+        // FIXME: import...
+        window.modCharacter(section + 'Color-bet', hashColorBeta)
         // ga('send', 'event', 'hash', 'color', section+'_'+hashColor );
       };
       if (hashColorGamma != undefined && hashColorGamma != '') {
-        modCharacter(section + 'Color-gam', hashColorGamma)
+        // FIXME: import...
+        window.modCharacter(section + 'Color-gam', hashColorGamma)
         // ga('send', 'event', 'hash', 'color', section+'_'+hashColor );
       };
       if (hashColorDelta != undefined && hashColorDelta != '') {
-        modCharacter(section + 'Color-del', hashColorDelta)
+        // FIXME: import...
+        window.modCharacter(section + 'Color-del', hashColorDelta)
         // ga('send', 'event', 'hash', 'color', section+'_'+hashColor );
       };
       if (hashColorEpsilon != undefined && hashColorEpsilon != '') {
-        modCharacter(section + 'Color-eps', hashColorEpsilon)
+        // FIXME: import...
+        window.modCharacter(section + 'Color-eps', hashColorEpsilon)
         // ga('send', 'event', 'hash', 'color', section+'_'+hashColor );
       };
     };
@@ -72,7 +82,8 @@ function newParseHash () {
     if (hashDict[key] === '') { hash.remove(key) }
   }
   if (hashDict.irisColor != '') {
-    modCharacter('irisColor', hashDict.irisColor)
+    // FIXME: import...
+    window.modCharacter('irisColor', hashDict.irisColor)
   }
 }
 
