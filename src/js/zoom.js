@@ -135,7 +135,7 @@ function animateZoom (newViewBox) {
   var heightNew
   var animateViewBox
 
-  if (newViewBox != '10 50 540 540' && !characterSVG.classList.contains('zoomed')) {
+  if (newViewBox !== '10 50 540 540' && !characterSVG.classList.contains('zoomed')) {
     characterSVG.classList.add('zoomed')
   } else if (newViewBox === '10 50 540 540' && characterSVG.classList.contains('zoomed')) {
     characterSVG.classList.remove('zoomed')
