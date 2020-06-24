@@ -163,7 +163,7 @@ function animateZoom (newViewBox) {
     characterSVG.setAttribute('viewBox', animateViewBox)
 
     if (timeElapsed >= animationDuration) {
-      cancelAnimationFrame(globalID)
+      window.cancelAnimationFrame(globalID)
       return
     }
     globalID = window.requestAnimationFrame(repeatOften)
