@@ -166,7 +166,7 @@ function animateZoom (newViewBox) {
       cancelAnimationFrame(globalID)
       return
     }
-    globalID = requestAnimationFrame(repeatOften)
+    globalID = window.requestAnimationFrame(repeatOften)
   }
-  globalID = requestAnimationFrame(repeatOften)
+  globalID = window.requestAnimationFrame(repeatOften)
 }
