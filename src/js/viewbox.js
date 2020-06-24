@@ -2,6 +2,7 @@ export function getViewBox (t, d) {
   var id = t + '_' + d
   var sex = window.c.choices.sex
   var idDict
+  var sectionDict
   if (sex === 'm') {
     idDict = {
       armband_bandage_right: '181 235 81 81',
@@ -50,7 +51,7 @@ export function getViewBox (t, d) {
       tatoo_chaos_right: '198 164 64 64',
       underwear_boxers: '224 258 120 120'
     }
-    var sectionDict = {
+    sectionDict = {
       age: '261 109 40 40',
       belt: '185 135 190 190',
       body: '65 130 430 430',
@@ -168,7 +169,7 @@ export function getViewBox (t, d) {
       top_tube_v: '223 170 120 120',
       underwear_boxers: '224 258 120 120'
     }
-    var sectionDict = {
+    sectionDict = {
       age: '261 121 40 40',
       armband: '313 206 38 38',
       belt: '175 185 190 190',
