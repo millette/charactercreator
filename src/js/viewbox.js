@@ -1,5 +1,4 @@
-
-function getViewBox (t, d) {
+export function getViewBox (t, d) {
   var id = t + '_' + d
   var sex = c.choices.sex
   if (sex === 'm') {
