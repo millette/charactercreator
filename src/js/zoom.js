@@ -1,3 +1,7 @@
+// TODO: import c
+// TODO: import shape
+// See window.c and window.shape (globals)
+
 /*
 // FIXME: doesn't do anything..? Function and var have same name...
 function isLandscape () {
@@ -35,11 +39,11 @@ function zoomOut () {
 
 function zoomFace () {
   // var landscape = isLandscape() // TODO change newViewBox is in landscape mode.
-  var sex = c.choices.sex
+  // var sex = c.choices.sex
   var newViewBox
-  shape = document.getElementById(('svg1'))
+  window.shape = document.getElementById(('svg1'))
   // TODO Consider size of window where rezooming.
-  if (sex === 'm') {
+  if (window.c.choices.sex === 'm') {
     newViewBox = '242.6 99 80 80'
   } else {
     newViewBox = '243 109 80 80'
@@ -49,24 +53,24 @@ function zoomFace () {
 
 export function zoomTwoFaces () {
   // var landscape = isLandscape() // TODO change newViewBox is in landscape mode.
-  var sex = c.choices.sex
+  // var sex = c.choices.sex
   var newViewBox
-  shape = document.getElementById(('svg1'))
+  window.shape = document.getElementById(('svg1'))
   // TODO Consider size of window where rezooming.
-  if (sex === 'm') {
+  if (window.c.choices.sex === 'm') {
     newViewBox = '242.6 90 80 80'
   } else {
     newViewBox = '243 100 80 80'
   }
-  console.log('sex', sex)
+  // console.log('sex', sex)
   animateZoom(newViewBox)
 }
 
 function zoomTorso () {
   // var sex = c.choices.sex
   var newViewBox
-  shape = document.getElementById(('svg1'))// var =  "svg1" or "lg_face", etc.
-  if (c.choices.sex === 'm') {
+  window.shape = document.getElementById(('svg1'))// var =  "svg1" or "lg_face", etc.
+  if (window.c.choices.sex === 'm') {
     newViewBox = '204 85 150 150'
   } else {
     newViewBox = '207 97 150 150'
@@ -75,10 +79,10 @@ function zoomTorso () {
 }
 
 function zoomBody () {
-  var sex = c.choices.sex
+  // var sex = c.choices.sex
   var newViewBox
-  shape = document.getElementById(('svg1'))
-  if (sex === 'm') {
+  window.shape = document.getElementById(('svg1'))
+  if (window.c.choices.sex === 'm') {
     newViewBox = '136 73 290 290'
   } else {
     newViewBox = '140 84 290 290'
@@ -89,7 +93,7 @@ function zoomBody () {
 function zoomFull () {
   // var sex = c.choices.sex
   var newViewBox
-  shape = document.getElementById(('svg1'))
+  window.shape = document.getElementById(('svg1'))
   newViewBox = '10 50 540 540'
   animateZoom(newViewBox)
 }
