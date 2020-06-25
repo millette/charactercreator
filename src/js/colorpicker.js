@@ -1,12 +1,15 @@
+// TODO: import { getAllBodyLayers } from logic.js
+// TODO: import { getSectionLayersList, replaceMultilayer } from form.js
+// TODO: import { colorize } from colorize.js
 
-function addColorPicker () {
+export function addColorPicker () {
   var section = document.querySelector('.section--selected').innerHTML.toLowerCase()
   getColor(section)
 }
 
-function hideColorPicker () {
+export function hideColorPicker () {
   var colorPicker = document.querySelector('.colorpicker-wrapper')
-  if (colorPicker && !colorPicker.classList.contains('section--hide')) {
+  if (colorPicker && !colorPicker.classList.contains('section--hide')) {
     colorPicker.classList.add('section--hide')
   }
 }
@@ -21,16 +24,16 @@ function getPallette (sectionId) {
   var classCounter
 
   if (sectionId === 'body') {
-    files = getAllBodyLayers()
+    files = window.getAllBodyLayers()
   } else if (sectionId === 'mouth') {
-    emotions = getSectionLayersList('emotion')
+    emotions = window.getSectionLayersList('emotion')
     counter = emotions.length
     while (counter--) {
       files.push(sectionId + '_' + emotions[counter])
     }
   } else {
-    files = getSectionLayersList(sectionId)
-    files = replaceMultilayer(files, sectionId)
+    files = window.getSectionLayersList(sectionId)
+    files = window.replaceMultilayer(files, sectionId)
   }
 
   counter = files.length
@@ -80,27 +83,30 @@ function getColor (sectionId) {
   var slide = document.getElementById('slide')
   var picker = document.getElementById('picker')
   var section = document.querySelector('.section-id')
-  var wrapper = document.querySelector('.colorpicker-wrapper')
+  // var wrapper = document.querySelector('.colorpicker-wrapper')
 
   section.innerHTML = id
   getPallette(sectionId)
 
   try {
-    ColorPicker(
+    // from js/lib
+    window.ColorPicker(
       slide,
       picker,
       function (hex, hsv, rgb) {
-        colorize(id, hex)
+        window.colorize(id, hex)
       })
   } catch (error) {
     console.error(error)
   }
 }
 
+/*
 function emptyPicker () {
   var wrapper = document.querySelector('.colorpicker-wrapper')
   wrapper.innerHTML = ''
 }
+*/
 
 function clearPicker () {
   var wrapper = document.querySelector('.colorpicker-wrapper')
