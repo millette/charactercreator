@@ -1,3 +1,5 @@
+// TODO: import { updateDbUser } from login.js
+
 export function newChar () {
   var newCard = document.querySelector('.js-new-card')
   var firstInput = newCard.querySelector('.first-input')
@@ -23,7 +25,7 @@ export function createChar (evt) {
   window.currentUser.cc.personnages[personnageActuel] = window.hash.get()
   Object.assign(window.currentUser.cc.personnages, window.personnages)
 
-  updateDbUser(window.currentUser)
+  window.updateDbUser(window.currentUser)
     .then(function (json) {
       window.currentUser._rev = json.rev
       return json
@@ -40,7 +42,7 @@ function deleteChar () {
   var disposible = el.parentNode.parentNode.querySelector('.overlay__char-name').innerHTML
   delete window.currentUser.cc.personnages[disposible]
 
-  updateDbUser(window.currentUser)
+  window.updateDbUser(window.currentUser)
     .then(function (json) {
       window.currentUser._rev = json.rev
       return json
@@ -68,7 +70,7 @@ function saveChar () {
 
   Object.assign(window.currentUser.cc.personnages, window.personnages)
 
-  updateDbUser(window.currentUser)
+  window.updateDbUser(window.currentUser)
     .then(function (json) {
       window.currentUser._rev = json.rev
       return json
