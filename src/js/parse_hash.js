@@ -9,6 +9,7 @@ export function parseHash (c, forms, skinLayers, hairLayers) {
   var hashColorGamma
   var hashColorDelta
   var hashColorEpsilon
+  var hashData
 
   while (formsCounter--) {
     var f = formsLength - formsCounter - 1
@@ -19,12 +20,12 @@ export function parseHash (c, forms, skinLayers, hairLayers) {
         window.modCharacter(section, hashData)
       }
       if (section === 'brows' || section === 'eyes' || section === 'mouth' || section === 'lashes' || section === 'sockets') {
-        var hashData = hash.get('emotion')
+        hashData = hash.get('emotion')
         if (hashData === undefined) {
           hashData = 'neutral'
         }
       } else {
-        var hashData = hash.get(section)
+        hashData = hash.get(section)
       }
       var id = section + '_' + hashData
       if (hashData != undefined) {
