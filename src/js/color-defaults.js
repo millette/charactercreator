@@ -1,5 +1,4 @@
-
-function defaultEyeColor (skinColor) {
+export function defaultEyeColor (skinColor) {
   var eyeColorDict = {
     '#ffdfc4': '#6F918A', // Grey
     '#f0d5be': '#FF6600', // Amber
@@ -27,11 +26,12 @@ function defaultEyeColor (skinColor) {
     '#a3866a': '#552200' // Brown
   }
   var eyeColor = eyeColorDict[skinColor]
-  c.choices.irisColor = eyeColor
-  hash.add({ irisColor: eyeColor })
+  // FIXME: import...
+  window.c.choices.irisColor = eyeColor
+  window.hash.add({ irisColor: eyeColor })
 }
 
-function defaultHairColor (skinColor) {
+export function defaultHairColor (skinColor) {
   var hairColorDict = {
     '#ffdfc4': '#803300', // Light brown
     '#f0d5be': '#803300', // Light brown
@@ -59,6 +59,7 @@ function defaultHairColor (skinColor) {
     '#a3866a': '#1a1a1a' // Black
   }
   var newHairColor = hairColorDict[skinColor]
-  c.choices.hairColor = newHairColor
-  hash.add({ hairColor: newHairColor })
+  // FIXME: import...
+  window.c.choices.hairColor = newHairColor
+  window.hash.add({ hairColor: newHairColor })
 }
