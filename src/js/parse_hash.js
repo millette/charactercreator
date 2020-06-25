@@ -125,8 +125,8 @@ function personnageActuelToHash (currentUser) {
   if (personnageActuel && personnageActuel !== '') {
     personnageActuelData = currentUser.cc.personnages[personnageActuel]
     itemsList = Object.keys(personnageActuelData)
-    itemsListLength = itemsList.length
-    itemsListCounter = itemsListLength
+    var itemsListLength = itemsList.length
+    var itemsListCounter = itemsListLength
     while (itemsListCounter--) {
       currentCount = itemsListLength - itemsListCounter - 1
       myKey = itemsList[currentCount]
