@@ -1,18 +1,19 @@
+// TODO: import { closeAllOverlays } from modals.js
 
-function rollCredits (evt) {
+export function rollCredits (evt) {
   if (evt) {
     evt.preventDefault()
   }
 
   var overlay = document.querySelector('.js-credits')
-  var closeBtn = overlay.querySelector('.close-btn')
+  // var closeBtn = overlay.querySelector('.close-btn')
 
-  closeAllOverlays()
+  window.closeAllOverlays()
 
   overlay.classList.add('overlay--show')
   overlay.addEventListener('click', closeCredits, true)
 
-  setTimeout(function () { closeAllOverlays() }, 52000)
+  setTimeout(window.closeAllOverlays, 52000)
 }
 
 function closeCredits (evt) {
