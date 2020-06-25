@@ -1,3 +1,5 @@
+// TODO: import { purgeHiddenLayers } from layers.js
+// TODO: import { caboose } from main.js
 
 function getDownloadViewBox () {
   var viewBoxValue
@@ -17,26 +19,30 @@ function getSVG () {
   var svgRaw = document.getElementById('svg1').childNodes
   var svgNodes
   var svgString
-  var event
+  // var event
 
-  purgeHiddenLayers()
+  window.purgeHiddenLayers()
 
   // This previous version of the text contains all svg files shown and hidden
   // It will need to be filtered to keep only the layers needed for our purpose
-  if (currentUser && currentUser.cc.personnageActuel !== '') {
-    filename = currentUser.cc.personnageActuel + '.svg'
+
+  /*
+  FIXME: filename isn't actually used here or after
+  if (window.currentUser && window.currentUser.cc.personnageActuel !== '') {
+    filename = window.currentUser.cc.personnageActuel + '.svg'
   }
+  */
 
   svgNodes = Array.prototype.slice.call(svgRaw)
 
   svgNodes.forEach(function (item) {
-    if (item.innerHTML != undefined) {
+    if (item.innerHTML !== undefined) {
       // This removes only useless layers and allows us to o the next test.
-      if (!item.style || !item.style.opacity || item.style.opacity != 0) {
+      if (!item.style || !item.style.opacity || item.style.opacity !== '0') {
         svgString = '<g id="' + item.id + '">' + item.innerHTML + '</g>'
         text += svgString
-      } else {
-      };
+      // } else {
+      }
     }
   })
 
@@ -44,12 +50,13 @@ function getSVG () {
   return text
 }
 
-function download (ev) {
+export function download (ev) {
   ev.preventDefault()
 
-  ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Download', eventLabel: 'Download SVG file of character' })
+  // FIXME: if ga() doesn't exist because an adblocker, make sure we have a stub (NOP) for it.
+  window.ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Download', eventLabel: 'Download SVG file of character' })
   // TODO make the filename the character's name if possible.
-  var filename = c.choices.name || 'my_character.svg'
+  var filename = window.c.choices.name || 'my_character.svg'
   var pom
   var text = getSVG()
   // TODO Copy the URL before it is erased by the download function.
@@ -59,11 +66,11 @@ function download (ev) {
   pom.setAttribute('download', filename)
 
   if (document.createEvent) {
-    event = document.createEvent('MouseEvents')
+    var event = document.createEvent('MouseEvents')
     event.initEvent('click', true, true)
     pom.dispatchEvent(event)
   } else {
     pom.click()
   }
-  caboose()
+  window.caboose()
 }
