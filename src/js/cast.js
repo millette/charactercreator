@@ -1,4 +1,4 @@
-// TODO: import { updateDbUser } from login.js
+// TODO: import { updateDbUser, manageCharacters } from login.js
 
 export function newChar () {
   var newCard = document.querySelector('.js-new-card')
@@ -34,7 +34,7 @@ export function createChar (evt) {
     .catch(function (err) {
       console.log('err', err)
     })
-  manageCharacters()
+  window.manageCharacters()
 }
 
 function deleteChar () {
@@ -51,7 +51,7 @@ function deleteChar () {
     .catch(function (err) {
       console.log('err', err)
     })
-  manageCharacters()
+    window.manageCharacters()
 }
 
 function saveChar () {
