@@ -1,8 +1,13 @@
+// TODO: import { processSection } from loader.js
+// TODO: import { getMultiLayer, getSkinLayers, getHairLayers } from main.js
+// TODO: import { modCharacter } from logic.js
+
 function shadeColor (color, percent) {
   var num = parseInt(color.slice(1), 16); var amt = Math.round(2.55 * percent); var R = (num >> 16) + amt; var G = (num >> 8 & 0x00FF) + amt; var B = (num & 0x0000FF) + amt
   return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1)
 }
 
+/*
 function ColorLuminance (hex, lum) {
   // validate hex string
   hex = String(hex).replace(/[^0-9a-f]/gi, '')
@@ -11,15 +16,18 @@ function ColorLuminance (hex, lum) {
   }
   lum = lum || 0
   // convert to decimal and change luminosity
-  var rgb = '#'; var c; var i
-  for (i = 0; i < 3; i++) {
-    c = parseInt(hex.substr(i * 2, 2), 16)
-    c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16)
-    rgb += ('00' + c).substr(c.length)
+  var rgb = '#'
+  var c22
+  for (var i = 0; i < 3; i++) {
+    c22 = parseInt(hex.substr(i * 2, 2), 16)
+    c22 = Math.round(Math.min(Math.max(0, c22 + (c22 * lum)), 255)).toString(16)
+    rgb += ('00' + c22).substr(c22.length)
   }
   return rgb
 }
+*/
 
+/*
 function colorizeByClass (elClassName, color) {
   var elementList = document.querySelectorAll(('.' + elClassName))
   var elementListLength = elementList.length
@@ -28,13 +36,16 @@ function colorizeByClass (elClassName, color) {
     elementList[elementListLength - (elCounter + 1)].style.fill = color
   }
 }
+*/
 
+/*
 function colorSkin (color) {
   colorizeByClass('upperlip', shadeColor(color, -10))
   colorizeByClass('lowerlip', shadeColor(color, 10))
 }
+*/
 
-function colorElement (el) {
+export function colorElement (el) {
   var id = el.id.split('_')
   var section = id[0]
   var item = id[1]
@@ -44,39 +55,39 @@ function colorElement (el) {
   var newColorDelta
   var newColorEpsilon
   var colorPrefix = 'alpha'
-  var lipstickColor
+  // var lipstickColor
 
   if (section === 'eyeballs') { section = 'iris' }
 
-  newColor = c.choices[section + 'Color']
-  newColorBeta = c.choices[section + 'Color-bet']
-  newColorGamma = c.choices[section + 'Color-gam']
-  newColorDelta = c.choices[section + 'Color-del']
-  newColorEpsilon = c.choices[section + 'Color-eps']
+  newColor = window.c.choices[section + 'Color']
+  newColorBeta = window.c.choices[section + 'Color-bet']
+  newColorGamma = window.c.choices[section + 'Color-gam']
+  newColorDelta = window.c.choices[section + 'Color-del']
+  newColorEpsilon = window.c.choices[section + 'Color-eps']
 
-  if ((processSection(section, item) === 'skin' || processSection(section, item) === 'mouth') && c.choices.skinColor != undefined) {
-    el = colorElementLoop(el, 'skin', c.choices.skinColor)
-  } else if (processSection(section, item) === 'hair') {
-    el = colorElementLoop(el, 'alpha', c.choices.hairColor)
+  if ((window.processSection(section, item) === 'skin' || window.processSection(section, item) === 'mouth') && window.c.choices.skinColor !== undefined) {
+    el = colorElementLoop(el, 'skin', window.c.choices.skinColor)
+  } else if (window.processSection(section, item) === 'hair') {
+    el = colorElementLoop(el, 'alpha', window.c.choices.hairColor)
   }
 
-  if (newColor != undefined) {
+  if (newColor !== undefined) {
     el = colorElementLoop(el, colorPrefix, newColor, false)
     if (section === 'mouth') {
       el = colorElementLoop(el, 'lips', newColor, true)
     }
   }
 
-  if (newColorBeta != undefined) {
+  if (newColorBeta !== undefined) {
     el = colorElementLoop(el, 'beta', newColorBeta, false)
   }
-  if (newColorGamma != undefined) {
+  if (newColorGamma !== undefined) {
     el = colorElementLoop(el, 'gamma', newColorGamma, false)
   }
-  if (newColorDelta != undefined) {
+  if (newColorDelta !== undefined) {
     el = colorElementLoop(el, 'delta', newColorDelta, false)
   }
-  if (newColorEpsilon != undefined) {
+  if (newColorEpsilon !== undefined) {
     el = colorElementLoop(el, 'epsilon', newColorEpsilon, false)
   }
   return el
@@ -152,8 +163,8 @@ function colorElementLoop (el, colorPrefix, newColor, lipstickFlag) {
 }
 
 function applyColorToChild (child, colorPair) {
-  if (child.style.fill != 'none' && child.style.fill != '') { child.style.fill = colorPair[0] }
-  if (child.style.stroke != 'none' && child.style.stroke != '') { child.style.stroke = colorPair[1] }
+  if (child.style.fill !== 'none' && child.style.fill !== '') { child.style.fill = colorPair[0] }
+  if (child.style.stroke !== 'none' && child.style.stroke !== '') { child.style.stroke = colorPair[1] }
   return child
 }
 
@@ -200,9 +211,14 @@ function getColorClassPrefix (id) {
   return prefix
 }
 
-function colorize (formId, _color) {
-  var multiLayer = getMultiLayer()
-  var skinLayers = getSkinLayers()
+export function colorize (formId, _color) {
+  var fullId
+  var myKey
+  var i
+  var tmpId
+  var origList
+  var multiLayer = window.getMultiLayer()
+  var skinLayers = window.getSkinLayers()
   var colorMultiplyer = 10 // Color contrast. TODO Move to user controls.
   var forms = window.forms
   var id = formId
@@ -244,24 +260,24 @@ function colorize (formId, _color) {
         // If the id is body, than the list will be of all 'skin' layers
         if (classPrefix === 'skin' && (id === 'body' || id === 'body_head' || id === 'ears' || id === 'nose' || id === 'age' || id === 'eyes' || id === 'freckles' || id === 'sockets')) {
           affectedList = skinLayers
-          var myKey = 'skinColor'
+          myKey = 'skinColor'
           // classPrefix = "skin";
         } else if (id === 'facialhair' || id === 'hair') {
-          affectedList = getHairLayers()
-          var myKey = 'hairColor'
+          affectedList = window.getHairLayers()
+          myKey = 'hairColor'
         } else if (id === 'iris') {
           affectedList = ['eyeballs_default']
-          var myKey = 'irisColor'
+          myKey = 'irisColor'
         } else {
           affectedList = []
-          var myKey = id + 'Color'
-          if (classPrefix != 'skin' && classPrefix != 'alpha' && classPrefix != 'lips') {
+          myKey = id + 'Color'
+          if (classPrefix !== 'skin' && classPrefix !== 'alpha' && classPrefix !== 'lips') {
             myKey = myKey + '-' + classPrefix.slice(0, 3)
           }
           if (myKey === 'irisColor' || myKey === 'browsColor' || myKey === 'lashesColor' || myKey === 'socketsColor' || myKey === 'mouthColor') {
             for (i in forms[0].Emotion) {
-              var tmpId = forms[0].Emotion[i]
-              if (tmpId != '') {
+              tmpId = forms[0].Emotion[i]
+              if (tmpId !== '') {
                 affectedList.push(id + '_' + tmpId)
               }
             }
@@ -270,8 +286,8 @@ function colorize (formId, _color) {
             }
           } else {
             for (i in forms[f][capitalId]) {
-              var tmpId = forms[f][capitalId][i]
-              if (tmpId != '') {
+              tmpId = forms[f][capitalId][i]
+              if (tmpId !== '') {
                 affectedList.push(id + '_' + tmpId)
               }
             }
@@ -283,12 +299,12 @@ function colorize (formId, _color) {
         origList = affectedList
         affectedList = getAffectedListFromOrig(origList, multiLayer)
         var myValue = _color.toString()
-        var obj = new Array()
+        var obj = []
         obj[myKey] = myValue
-        hash.add(obj)
-        modCharacter(myKey, myValue)
+        window.hash.add(obj)
+        window.modCharacter(myKey, myValue)
 
-        for (n in affectedList) {
+        for (var n in affectedList) {
           fullId = '#' + affectedList[n]
           if (id === 'mouth') {
             seperator = ' .lips.'
@@ -336,64 +352,66 @@ function colorize (formId, _color) {
 }
 
 function colorPaths (node, _color, colorDarker) {
-  if (node.style.fill != 'none' && node.style.fill != '') {
+  if (node.style.fill !== 'none' && node.style.fill !== '') {
     node.style.fill = _color
   }
-  if (node.style.stroke != 'none' && node.style.stroke != '') {
+  if (node.style.stroke !== 'none' && node.style.stroke !== '') {
     node.style.stroke = colorDarker
   }
 }
 
 function getAffectedListFromOrig (origList, multiLayer) {
-  affectedList = []
+  var affectedList = []
   var match
-  for (a in origList) {
+  for (var a in origList) {
     match = false
-    for (lyr in multiLayer) {
-      if (origList[a] == multiLayer[lyr][0]) {
+    for (var lyr in multiLayer) {
+      if (origList[a] === multiLayer[lyr][0]) {
         for (var i = 1; i <= multiLayer[lyr][1]; i++) {
-          idOf = origList[a] + '_' + i + '_of_' + multiLayer[lyr][1]
-          affectedList.push(idOf)
+          affectedList.push(origList[a] + '_' + i + '_of_' + multiLayer[lyr][1])
           match = true
         }
-      };
-    };
+      }
+    }
     if (!match) {
       affectedList.push(origList[a])
     }
-  };
+  }
   return affectedList
 }
 
+/*
 function replacementStyle (json, newColor) {
+  var currentValue
   var newStyle = json.style
   var replacement = ''
-  for (n in Object.keys(newStyle)) {
+  for (var n in Object.keys(newStyle)) {
     var currentKey = Object.keys(newStyle)[n]
 
     if (currentKey === 'fill') {
       if (newStyle[currentKey] != 'none') {
         if (json.style['stroke-width'] === undefined) {
-          var currentValue = ColorLuminance(newColor, -0.12)
+          currentValue = ColorLuminance(newColor, -0.12)
         } else {
-          var currentValue = newColor
+          currentValue = newColor
         }
       } else {
-        var currentValue = newStyle[currentKey]
+        currentValue = newStyle[currentKey]
       }
     } else if (currentKey === 'stroke') {
       if (newStyle[currentKey] != 'none') {
         if (json.style['stroke-width'] != undefined) {
-          var currentValue = ColorLuminance(newColor, -0.2)
+          currentValue = ColorLuminance(newColor, -0.2)
         }
       } else {
-        var currentValue = newStyle[currentKey]
+        currentValue = newStyle[currentKey]
       }
     } else {
-      var currentValue = newStyle[currentKey]
+      currentValue = newStyle[currentKey]
     }
-    var keyVal = 	currentKey + ': ' + currentValue + '; '
+    var keyVal = currentKey + ': ' + currentValue + '; '
     replacement = replacement.concat(keyVal)
   }
   return replacement
 }
+*/
