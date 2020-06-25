@@ -1,6 +1,5 @@
-
-function changeClipPathOnEyes (id) {
-  var emotion = id.slice(1).split('_')[1]
+export function changeClipPathOnEyes (id) {
+  // var emotion = id.slice(1).split('_')[1]
   var svgContainer = document.querySelector('#svg1 .character-container')
   var eyeRight = svgContainer.querySelector('#eye_right')
   var eyeLeft = svgContainer.querySelector('#eye_left')
@@ -10,8 +9,9 @@ function changeClipPathOnEyes (id) {
   }
 }
 
-function applyClipPath () {
+export function applyClipPath () {
   setTimeout(function () {
-    changeClipPathOnEyes('#eyes_' + c.choices.emotion)
+    // FIXME: import ...
+    changeClipPathOnEyes('#eyes_' + window.c.choices.emotion)
   }, 150)
 }
