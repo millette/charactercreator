@@ -37,6 +37,7 @@ export function createChar (evt) {
   window.manageCharacters()
 }
 
+/*
 function deleteChar () {
   var el = this
   var disposible = el.parentNode.parentNode.querySelector('.overlay__char-name').innerHTML
@@ -53,7 +54,9 @@ function deleteChar () {
     })
     window.manageCharacters()
 }
+*/
 
+/*
 function saveChar () {
   var saveBtn = document.querySelector('.save-btn')
   saveBtn.classList.remove('save--enabled')
@@ -80,3 +83,4 @@ function saveChar () {
       console.log('err', err)
     })
 }
+*/
