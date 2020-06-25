@@ -28,7 +28,7 @@ export function parseHash (c, forms, skinLayers, hairLayers) {
         hashData = hash.get(section)
       }
       var id = section + '_' + hashData
-      if (hashData != undefined) {
+      if (hashData !== undefined) {
         // FIXME: import...
         window.modCharacter(section, hashData)
         // ga('send', 'event', 'hash', 'select', id);
@@ -46,34 +46,44 @@ export function parseHash (c, forms, skinLayers, hairLayers) {
       hashColorDelta = hash.get(section + 'Color-del')
       hashColorEpsilon = hash.get(section + 'Color-eps')
 
-      if (hashColor != undefined && hashColor != '') {
+      // FIXME: !hashColor?
+      if (hashColor !== undefined && hashColor !== '') {
         // FIXME: import...
         window.modCharacter(section + 'Color', hashColor)
         // ga('send', 'event', 'hash', 'color', section+'_'+hashColor );
-      };
-      if (hashColorBeta != undefined && hashColorBeta != '') {
+      }
+
+      // FIXME: !hashColorBeta?
+      if (hashColorBeta !== undefined && hashColorBeta !== '') {
         // FIXME: import...
         window.modCharacter(section + 'Color-bet', hashColorBeta)
         // ga('send', 'event', 'hash', 'color', section+'_'+hashColor );
-      };
-      if (hashColorGamma != undefined && hashColorGamma != '') {
+      }
+
+      // FIXME: !hashColorGamma?
+
+      if (hashColorGamma !== undefined && hashColorGamma !== '') {
         // FIXME: import...
         window.modCharacter(section + 'Color-gam', hashColorGamma)
-        // ga('send', 'event', 'hash', 'color', section+'_'+hashColor );
-      };
-      if (hashColorDelta != undefined && hashColorDelta != '') {
+        // ga('send', 'event', 'hash', 'color', section+'_'+hashColor )
+      }
+
+      // FIXME: !hashColorDelta?
+      if (hashColorDelta !== undefined && hashColorDelta !== '') {
         // FIXME: import...
         window.modCharacter(section + 'Color-del', hashColorDelta)
         // ga('send', 'event', 'hash', 'color', section+'_'+hashColor );
-      };
-      if (hashColorEpsilon != undefined && hashColorEpsilon != '') {
+      }
+
+      // FIXME: !hashColorEpsilon?
+      if (hashColorEpsilon !== undefined && hashColorEpsilon !== '') {
         // FIXME: import...
         window.modCharacter(section + 'Color-eps', hashColorEpsilon)
         // ga('send', 'event', 'hash', 'color', section+'_'+hashColor );
-      };
-    };
-  };
-};
+      }
+    }
+  }
+}
 
 function newParseHash () {
   var hashDict = hash.get()
@@ -82,7 +92,7 @@ function newParseHash () {
   for (key in hashDict) {
     if (hashDict[key] === '') { hash.remove(key) }
   }
-  if (hashDict.irisColor != '') {
+  if (hashDict.irisColor !== '') {
     // FIXME: import...
     window.modCharacter('irisColor', hashDict.irisColor)
   }
