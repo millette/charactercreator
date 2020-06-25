@@ -88,7 +88,8 @@ gulp.task('scripts', function () {
   return gulp.src([
     // './bower_components/promise-polyfill/promise.js',
     // './bower_components/fetch/fetch.js',
-    './src/lib/colorpicker.js',
+    // './src/lib/colorpicker.js',
+    './src/lib/*.js',
     './src/js/*.js'
   ])
     .pipe(concat('all.js'))
