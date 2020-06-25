@@ -1,6 +1,7 @@
 // TODO: import { modCharacter } from logic.js
 // TODO: import { clearCharacter } from layers.js
 // TODO: import { currentUser } from login.js
+// TODO: import { selectMale, selectFemale } from main.js
 
 export function parseHash (c, forms, skinLayers, hairLayers) {
   newParseHash()
@@ -147,8 +148,10 @@ function personnageActuelToHash (currentUser) {
 function interpretHash () {
   var hashSex = hash.get('sex')
   if (hashSex === 'm') {
-    selectMale()
+    // FIXME: import...
+    window.selectMale()
   } else if (hashSex === 'f') {
-    selectFemale()
+    // FIXME: import...
+    window.selectFemale()
   }
 }
