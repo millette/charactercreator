@@ -29,7 +29,7 @@ export function createChar (evt) {
     .then(function (json) {
       window.currentUser._rev = json.rev
       return json
-      ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'New', eventLabel: 'Save new character' })
+      // ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'New', eventLabel: 'Save new character' })
     })
     .catch(function (err) {
       console.log('err', err)
