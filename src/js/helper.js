@@ -33,7 +33,7 @@ export function getPosition (el) {
   var yPos = 0
 
   while (el) {
-    if (el.tagName != 'BODY') {
+    if (el.tagName !== 'BODY') {
       // for all other non-BODY elements
       xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft)
       yPos += (el.offsetTop - el.scrollTop + el.clientTop)
