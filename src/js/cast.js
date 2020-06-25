@@ -21,7 +21,7 @@ export function createChar (evt) {
   if (!window.currentUser.cc.personnageActuel) { window.currentUser.cc.personnageActuel = personnageActuel }
   if (!window.currentUser.cc.personnages) { window.currentUser.cc.personnages = {} }
   window.currentUser.cc.personnages[personnageActuel] = window.hash.get()
-  Object.assign(window.currentUser.cc.personnages, personnages)
+  Object.assign(window.currentUser.cc.personnages, window.personnages)
 
   updateDbUser(window.currentUser)
     .then(function (json) {
@@ -66,7 +66,7 @@ function saveChar () {
 
   window.currentUser.cc.personnages[personnageActuel] = window.hash.get()
 
-  Object.assign(window.currentUser.cc.personnages, personnages)
+  Object.assign(window.currentUser.cc.personnages, window.personnages)
 
   updateDbUser(window.currentUser)
     .then(function (json) {
