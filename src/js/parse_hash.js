@@ -87,7 +87,7 @@ export function parseHash (c, forms, skinLayers, hairLayers) {
 
 function newParseHash () {
   var hashDict = hash.get()
-  var keys = Object.keys(hashDict)
+  // var keys = Object.keys(hashDict)
   var key
   for (key in hashDict) {
     if (hashDict[key] === '') { hash.remove(key) }
