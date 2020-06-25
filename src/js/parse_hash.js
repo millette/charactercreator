@@ -1,7 +1,40 @@
+'use strict'
+
 // TODO: import { modCharacter } from logic.js
 // TODO: import { clearCharacter } from layers.js
 // TODO: import { currentUser } from login.js
 // TODO: import { selectMale, selectFemale } from main.js
+
+/*
+// FIXME: extracking hash() from lib/hash.min.js
+;(function (a, b) {
+  var c = (function () {
+    var b = function () {
+      var b = a.location.hash ? a.location.hash.substr(1).split('&') : []; var c = {}; for (var d = 0; d < b.length; d++) { var e = b[d].split('='); c[e[0]] = decodeURIComponent(e[1]) } return c
+    }
+    var c = function (b) {
+      var c = []
+      for (var d in b) {
+        c.push(d + '=' + encodeURIComponent(b[d]))
+      }
+      a.location.hash = c.join('&')
+    }
+    return {
+      get: function (a) {
+        var c = b(); if (a) { return c[a] } else { return c }
+      },
+      add: function (a) {
+        var d = b(); for (var e in a) { d[e] = a[e] }c(d)
+      },
+      remove: function (a) {
+        a = typeof a === 'string' ? [a] : a; var d = b(); for (var e = 0; e < a.length; e++) { delete d[a[e]] }c(d)
+      },
+      clear: function () { c({}) }
+    }
+  }())
+  a.hash = c
+})(window)
+*/
 
 export function parseHash (c, forms, skinLayers, hairLayers) {
   newParseHash()
@@ -23,12 +56,12 @@ export function parseHash (c, forms, skinLayers, hairLayers) {
         window.modCharacter(section, hashData)
       }
       if (section === 'brows' || section === 'eyes' || section === 'mouth' || section === 'lashes' || section === 'sockets') {
-        hashData = hash.get('emotion')
+        hashData = window.hash.get('emotion')
         if (hashData === undefined) {
           hashData = 'neutral'
         }
       } else {
-        hashData = hash.get(section)
+        hashData = window.hash.get(section)
       }
       var id = section + '_' + hashData
       if (hashData !== undefined) {
@@ -43,11 +76,11 @@ export function parseHash (c, forms, skinLayers, hairLayers) {
         section = 'skin'
       } else if (id in hairLayers || section === 'hair') { section = 'hair' }
 
-      hashColor = hash.get(section + 'Color')
-      hashColorBeta = hash.get(section + 'Color-bet')
-      hashColorGamma = hash.get(section + 'Color-gam')
-      hashColorDelta = hash.get(section + 'Color-del')
-      hashColorEpsilon = hash.get(section + 'Color-eps')
+      hashColor = window.hash.get(section + 'Color')
+      hashColorBeta = window.hash.get(section + 'Color-bet')
+      hashColorGamma = window.hash.get(section + 'Color-gam')
+      hashColorDelta = window.hash.get(section + 'Color-del')
+      hashColorEpsilon = window.hash.get(section + 'Color-eps')
 
       // FIXME: !hashColor?
       if (hashColor !== undefined && hashColor !== '') {
@@ -89,11 +122,11 @@ export function parseHash (c, forms, skinLayers, hairLayers) {
 }
 
 function newParseHash () {
-  var hashDict = hash.get()
+  var hashDict = window.hash.get()
   // var keys = Object.keys(hashDict)
   var key
   for (key in hashDict) {
-    if (hashDict[key] === '') { hash.remove(key) }
+    if (hashDict[key] === '') { window.hash.remove(key) }
   }
   if (hashDict.irisColor !== '') {
     // FIXME: import...
@@ -135,7 +168,7 @@ function personnageActuelToHash (currentUser) {
       myKey = itemsList[currentCount]
       myValue = personnageActuelData[itemsList[currentCount]]
       hashArgs[myKey] = myValue
-      hash.add(hashArgs)
+      window.hash.add(hashArgs)
     }
     // FIXME: import...
     window.clearCharacter()
@@ -146,7 +179,7 @@ function personnageActuelToHash (currentUser) {
 }
 
 function interpretHash () {
-  var hashSex = hash.get('sex')
+  var hashSex = window.hash.get('sex')
   if (hashSex === 'm') {
     // FIXME: import...
     window.selectMale()
