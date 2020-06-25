@@ -1,4 +1,6 @@
 // TODO: import { modCharacter } from logic.js
+// TODO: import { clearCharacter } from layers.js
+// TODO: import { currentUser } from login.js
 
 export function parseHash (c, forms, skinLayers, hairLayers) {
   newParseHash()
@@ -134,7 +136,8 @@ function personnageActuelToHash (currentUser) {
       hashArgs[myKey] = myValue
       hash.add(hashArgs)
     }
-    clearCharacter()
+    // FIXME: import...
+    window.clearCharacter()
     interpretHash()
   } else {
 
