@@ -1,12 +1,11 @@
-
-function newChar () {
+export function newChar () {
   var newCard = document.querySelector('.js-new-card')
   var firstInput = newCard.querySelector('.first-input')
   newCard.classList.add('overlay__char-new--create')
   firstInput.focus()
 }
 
-function createChar (evt) {
+export function createChar (evt) {
   if (evt) {
     evt.preventDefault()
   }
@@ -18,15 +17,15 @@ function createChar (evt) {
   newCard.classList.remove('overlay__char-new--create')
   var personnageActuel = newCharName
   if (!personnageActuel) { return }
-  if (!currentUser.cc) { currentUser.cc = {} }
-  if (!currentUser.cc.personnageActuel) { currentUser.cc.personnageActuel = personnageActuel }
-  if (!currentUser.cc.personnages) { currentUser.cc.personnages = {} }
-  currentUser.cc.personnages[personnageActuel] = window.hash.get()
-  Object.assign(currentUser.cc.personnages, personnages)
+  if (!window.currentUser.cc) { window.currentUser.cc = {} }
+  if (!window.currentUser.cc.personnageActuel) { window.currentUser.cc.personnageActuel = personnageActuel }
+  if (!window.currentUser.cc.personnages) { window.currentUser.cc.personnages = {} }
+  window.currentUser.cc.personnages[personnageActuel] = window.hash.get()
+  Object.assign(window.currentUser.cc.personnages, personnages)
 
-  updateDbUser(currentUser)
+  updateDbUser(window.currentUser)
     .then(function (json) {
-      currentUser._rev = json.rev
+      window.currentUser._rev = json.rev
       return json
       ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'New', eventLabel: 'Save new character' })
     })
@@ -39,11 +38,11 @@ function createChar (evt) {
 function deleteChar () {
   var el = this
   var disposible = el.parentNode.parentNode.querySelector('.overlay__char-name').innerHTML
-  delete currentUser.cc.personnages[disposible]
+  delete window.currentUser.cc.personnages[disposible]
 
-  updateDbUser(currentUser)
+  updateDbUser(window.currentUser)
     .then(function (json) {
-      currentUser._rev = json.rev
+      window.currentUser._rev = json.rev
       return json
       ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Delete', eventLabel: 'Delete character' })
     })
@@ -56,22 +55,22 @@ function deleteChar () {
 function saveChar () {
   var saveBtn = document.querySelector('.save-btn')
   saveBtn.classList.remove('save--enabled')
-  var personnageActuel = currentUser.cc.personnageActuel
+  var personnageActuel = window.currentUser.cc.personnageActuel
 
-  if (!myUsername || !currentUser) { return }
-  if (!currentUser) { return }
+  if (!myUsername || !window.currentUser) { return }
+  if (!window.currentUser) { return }
   if (!personnageActuel) { return }
-  if (!currentUser.cc) { currentUser.cc = {} }
-  if (!currentUser.cc.personnageActuel) { currentUser.cc.personnageActuel = personnageActuel }
-  if (!currentUser.cc.personnages) { currentUser.cc.personnages = {} }
+  if (!window.currentUser.cc) { window.currentUser.cc = {} }
+  if (!window.currentUser.cc.personnageActuel) { window.currentUser.cc.personnageActuel = personnageActuel }
+  if (!window.currentUser.cc.personnages) { window.currentUser.cc.personnages = {} }
 
-  currentUser.cc.personnages[personnageActuel] = window.hash.get()
+  window.currentUser.cc.personnages[personnageActuel] = window.hash.get()
 
-  Object.assign(currentUser.cc.personnages, personnages)
+  Object.assign(window.currentUser.cc.personnages, personnages)
 
-  updateDbUser(currentUser)
+  updateDbUser(window.currentUser)
     .then(function (json) {
-      currentUser._rev = json.rev
+      window.currentUser._rev = json.rev
       return json
       ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Save', eventLabel: 'Save character' })
     })
