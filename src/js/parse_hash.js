@@ -116,7 +116,7 @@ function personnageActuelToHash (currentUser) {
   var personnageActuel = currentUser.cc.personnageActuel
   var personnageActuelData
   var itemsList
-  var itemsCounter
+  // var itemsCounter
   var currentCount
   var myKey
   var myValue
