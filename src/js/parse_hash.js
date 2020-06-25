@@ -98,15 +98,17 @@ function newParseHash () {
   }
 }
 
-function hashCharacter () {
-  var u = currentUser.cc.personnages[currentUser.cc.personnageActuel]
+export function hashCharacter () {
+  // FIXME: import...
+  var u = window.currentUser.cc.personnages[window.currentUser.cc.personnageActuel]
   var r
   var t = []
   for (r in u) {
     t.push(encodeURIComponent(r) + '=' + encodeURIComponent(u[r]))
   }
   if (t.length) {
-    personnageActuelToHash(currentUser)
+    // FIXME: import...
+    personnageActuelToHash(window.currentUser)
   }
 }
 
