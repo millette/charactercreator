@@ -1,13 +1,17 @@
+// TODO: import { showDownloadOptions } from modals.js
+// TODO: import { createForm, getSectionsFromIdMultiLayer } from form.js
+// TODO: import { revealCharacter } from login.js
+// TODO: import { bodyTypesToLayers } from layers.js
 
-function onAllLoaded () {
+export function onAllLoaded () {
   var zoomContainer = document.querySelector('.zoom-container')
   var maleSilhouette = document.getElementById('male_silhouette')
   var femaleSilhouette = document.getElementById('female_silhouette')
-  var sideBarRight = document.querySelector('.sidebar-right')
+  // var sideBarRight = document.querySelector('.sidebar-right')
   var sideBarLeft = document.querySelector('.sidebar-left')
   var downloadBtn = document.querySelector('#downloadButton')
   var characterSex
-  var hashSex = hash.get('sex')
+  var hashSex = window.hash.get('sex')
 
   if (hashSex) {
     characterSex = hashSex
@@ -16,29 +20,29 @@ function onAllLoaded () {
   }
 
   if (!downloadBtn.classList.contains('.enabled')) {
-    downloadBtn.addEventListener('click', showDownloadOptions, false)
+    downloadBtn.addEventListener('click', window.showDownloadOptions, false)
     downloadBtn.classList.add('enabled')
   }
 
   femaleSilhouette.style.opacity = '0'
   maleSilhouette.style.opacity = '0'
 
-  createForm(characterSex, forms)
+  window.createForm(characterSex, window.forms)
 
   sideBarLeft.classList.add('visible')
   // sideBarRight.classList.add('visible');
 
-  revealCharacter()
+  window.revealCharacter()
 
   zoomContainer.classList.add('zoom-container--show')
 }
 
-function processSection (section, item) {
-  if (section === 'body' || section === 'ears' || section === 'nose' || section === 'eyes' || section === 'age' || section === 'freckles' || section === 'sockets' || section === 'scar' || section === 'wings' && item === 'devil') {
+export function processSection (section, item) {
+  if ((section === 'body' || section === 'ears' || section === 'nose' || section === 'eyes' || section === 'age' || section === 'freckles' || section === 'sockets' || section === 'scar' || section === 'wings') && item === 'devil') {
     section = 'skin'
   }
   if (section === 'mouth') {
-    if (hash.get('mouthColor') != undefined) {
+    if (window.hash.get('mouthColor') !== undefined) {
       section = 'mouth'
     } else {
       section = 'skin'
@@ -50,6 +54,7 @@ function processSection (section, item) {
   return section
 }
 
+/*
 function onEachLoaded (frag, fileName) {
   var myLayer = fileName
   var seen
@@ -64,6 +69,7 @@ function onEachLoaded (frag, fileName) {
 
   frag.select('*').attr({ opacity: seen })
 }
+*/
 
 /*
 Object.size = function (obj) {
@@ -76,9 +82,11 @@ Object.size = function (obj) {
 }
 */
 
-function choicesToList (c) {
+export function choicesToList (c) {
+  // TODO: NOP???
+  /*
   var layersList = []
-  var sex = c.choices.sex
+  // var sex = c.choices.sex
   var counter = Object.keys(c.choices).length
   var keyChoice
   var valueChoice
@@ -91,14 +99,15 @@ function choicesToList (c) {
     }
   }
   return layersList
+  */
 }
 
-function choicesToLayers (c, multiLayer) {
+export function choicesToLayers (c, multiLayer) {
   var selectedLayers = []
-  var emotionLayers = fromEmotionGetLayers(c.choices.emotion)
+  // var emotionLayers = fromEmotionGetLayers(c.choices.emotion)
   var choiceLayers = []
-  var layersLength = emotionLayers.length
-  var layersNum = emotionLayers.length
+  // var layersLength = emotionLayers.length
+  // var layersNum = emotionLayers.length
   var counter
   var tmpList
   var bodyType
@@ -106,10 +115,10 @@ function choicesToLayers (c, multiLayer) {
   var bodyTypeCounter
 
   for (var index in c.choices) {
-    if (index.slice(-5) != 'Color') {
+    if (index.slice(-5) !== 'Color') {
       if (index + '_' + c.choices[index] === 'body_athletic' || index + '_' + c.choices[index] === 'body_default' || index + '_' + c.choices[index] === 'body_veiny' || index + '_' + c.choices[index] === 'body_android-00') {
         bodyType = c.choices[index]
-        bodyTypeList = bodyTypesToLayers(bodyType)
+        bodyTypeList = window.bodyTypesToLayers(bodyType)
         bodyTypeCounter = bodyTypeList.length
         while (bodyTypeCounter--) {
           choiceLayers.push(bodyTypeList[bodyTypeCounter])
@@ -128,7 +137,7 @@ function choicesToLayers (c, multiLayer) {
         selectedLayers.push(tmpList[counter])
       }
     } else {
-      tmpList = getSectionsFromIdMultiLayer(multiLayer, '#' + choiceLayers[cl])
+      tmpList = window.getSectionsFromIdMultiLayer(multiLayer, '#' + choiceLayers[cl])
       counter = tmpList.length
       while (counter--) {
         selectedLayers.push(tmpList[counter].slice(1))
