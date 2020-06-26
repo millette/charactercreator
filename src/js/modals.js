@@ -32,10 +32,11 @@ export function showFAQ (ev) {
   closeBtn.addEventListener('click', closeOverlay, false)
 }
 
+/*
 export function showShop (ev) {
   ev.preventDefault()
   var overlay = document.querySelector('.js-shop')
-  console.log('url', upload())
+  // console.log('url', upload())
   var closeBtn = overlay.querySelector('.close-btn')
   window.hamburger()
   closeAllOverlays()
@@ -43,6 +44,7 @@ export function showShop (ev) {
   overlay.addEventListener('click', closeOverlay, true)
   closeBtn.addEventListener('click', closeOverlay, false)
 }
+*/
 
 export function showDownloadOptions (ev) {
   ev.preventDefault()

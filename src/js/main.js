@@ -28,7 +28,7 @@ window.onload = function () {
 
   if (aboutBtn && typeof showAbout === 'function') { aboutBtn.addEventListener('click', showAbout, false) }
   if (faqBtn && typeof showFAQ === 'function') { faqBtn.addEventListener('click', showFAQ, false) }
-  if (shopBtn && typeof showShop === 'function') { shopBtn.addEventListener('click', showShop, false) }
+  // if (shopBtn && typeof showShop === 'function') { shopBtn.addEventListener('click', showShop, false) }
   if (whoBtn && typeof whoami === 'function') { whoBtn.addEventListener('click', whoami, false) }
   if (logoutBtn && typeof logout === 'function') { logoutBtn.addEventListener('click', logout, false) }
   if (loginBtn && typeof loginMenu === 'function') { loginBtn.addEventListener('click', loginMenu, false) }
