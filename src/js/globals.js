@@ -321,15 +321,19 @@ export var layersFemale = [
 
 // Color Palettes
 export var fabricPalette = ['#25282f', '#494a52', '#323346', '#6f7581', '#c3c3c5', '#ece9ec', '#f3e3d4', '#434d71', '#f4e2c1', '#ba855e', '#b19f92', '#9e9888']
-var layerDirectoryFemale = 'layer/female/'
-var layerDirectoryMale = 'layer/male/'
+export var layerDirectoryFemale = 'layer/female/'
+export var layerDirectoryMale = 'layer/male/'
+
+/*
 var size = function (obj) {
-  var size = 0; var key
+  var size = 0
+  var key
   for (key in obj) {
     if (obj.hasOwnProperty(key)) size++
   }
   return size
 }
+*/
 
 window.maleFormList = [maleForm1, maleForm2, maleForm3, maleForm4, maleForm5, maleForm6]
 window.femaleFormList = [femaleForm1, femaleForm2, femaleForm3, femaleForm4, femaleForm5, femaleForm6]

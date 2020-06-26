@@ -65,13 +65,16 @@ function onEachLoaded (frag, fileName) {
   frag.select('*').attr({ opacity: seen })
 }
 
+/*
 Object.size = function (obj) {
-  var size = 0; var key
+  var size = 0
+  var key
   for (key in obj) {
     if (obj.hasOwnProperty(key)) size++
   }
   return size
 }
+*/
 
 function choicesToList (c) {
   var layersList = []
