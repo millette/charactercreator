@@ -1,3 +1,5 @@
+/*
+// FIXME: unused: initEyes() is never called
 function initEyes () {
   console.log('initEyes')
 
@@ -125,3 +127,4 @@ function initEyes () {
     focus = setTimeout(centerGaze, 1500)
   }
 }
+*/
