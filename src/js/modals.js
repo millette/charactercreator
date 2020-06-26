@@ -1,3 +1,5 @@
+// TODO import { hamburger } from hamburger-menu.js
+// TODO import { resetCharacters, login } from login.js
 
 function closeAllOverlays () {
   var overlays = document.querySelectorAll('.overlay--show')
@@ -8,60 +10,60 @@ function closeAllOverlays () {
   }
 }
 
-function showAbout (ev) {
+export function showAbout (ev) {
   ev.preventDefault()
   var overlay = document.querySelector('.js-about')
   var closeBtn = overlay.querySelector('.close-btn')
-  hamburger()
+  window.hamburger()
   closeAllOverlays()
   overlay.classList.add('overlay--show')
   overlay.addEventListener('click', closeOverlay, true)
   closeBtn.addEventListener('click', closeOverlay, false)
 }
 
-function showFAQ (ev) {
+export function showFAQ (ev) {
   ev.preventDefault()
   var overlay = document.querySelector('.js-faq')
   var closeBtn = overlay.querySelector('.close-btn')
-  hamburger()
+  window.hamburger()
   closeAllOverlays()
   overlay.classList.add('overlay--show')
   overlay.addEventListener('click', closeOverlay, true)
   closeBtn.addEventListener('click', closeOverlay, false)
 }
 
-function showShop (ev) {
+export function showShop (ev) {
   ev.preventDefault()
   var overlay = document.querySelector('.js-shop')
   console.log('url', upload())
   var closeBtn = overlay.querySelector('.close-btn')
-  hamburger()
+  window.hamburger()
   closeAllOverlays()
   overlay.classList.add('overlay--show')
   overlay.addEventListener('click', closeOverlay, true)
   closeBtn.addEventListener('click', closeOverlay, false)
 }
 
-function showDownloadOptions (ev) {
+export function showDownloadOptions (ev) {
   ev.preventDefault()
   var overlay = document.querySelector('.js-download-options')
   var closeBtn = overlay.querySelector('.close-btn')
-  hamburger()
+  window.hamburger()
   closeAllOverlays()
   overlay.classList.add('overlay--show')
   overlay.addEventListener('click', closeOverlay, true)
   closeBtn.addEventListener('click', closeOverlay, false)
 }
 
-function logoutUI () {
+export function logoutUI () {
   var pageWrap = document.querySelector('.logged')
   if (pageWrap) {
     pageWrap.classList.remove('logged')
-    resetCharacters()
+    window.resetCharacters()
   }
 }
 
-function loginMenu (evt) {
+export function loginMenu (evt) {
   if (evt) {
     evt.preventDefault()
   }
@@ -71,7 +73,7 @@ function loginMenu (evt) {
   var closeBtn = overlay.querySelector('.close-btn')
   closeAllOverlays()
   overlay.classList.add('overlay--show')
-  loginForm.addEventListener('submit', login, true)
+  loginForm.addEventListener('submit', window.login, true)
   overlay.addEventListener('click', closeLogin, true)
   firstInput.focus()
   closeBtn.addEventListener('click', closeOverlay, false)
@@ -82,10 +84,10 @@ function closeLogin (evt) {
   var cancelBtn = overlay.querySelector('.cancel-btn')
   var target = evt.target
   if (target === overlay || target === cancelBtn) {
-    var login = document.querySelector('.overlay--show')
-    if (login) {
+    var login22 = document.querySelector('.overlay--show')
+    if (login22) {
       clearInputFields()
-      login.classList.remove('overlay--show')
+      login22.classList.remove('overlay--show')
     }
   }
 }
@@ -126,7 +128,7 @@ function clearInputFields () {
   }
 }
 
-function clearInputUsername () {
+export function clearInputUsername () {
   var currentOverlay = document.querySelector('.overlay--show')
   var inputUsername = currentOverlay.querySelectorAll('.overlay__input__username')
   inputUsername[0].value = ''
