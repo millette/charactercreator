@@ -1,18 +1,19 @@
+// TODO: import { replaceMultilayer } from form.js
 
-function purgeHiddenLayers () {
+export function purgeHiddenLayers () {
   var option = document.querySelector('#content_1 .selected--option')
   if (!option) { return }
-  var section = option.classList[2].slice(9)
+  // var section = option.classList[2].slice(9)
   var thumbsSVG = document.querySelectorAll('#content_1 .selected--option svg')
   var svg = document.querySelector('#svg1 #character-container')
   var counter = thumbsSVG.length
   var currentSVG
   var layersList = []
-  var mutlilayerList = []
+  // var mutlilayerList = []
   while (counter--) {
     layersList.push(thumbsSVG[counter].classList[1])
   }
-  layersList = replaceMultilayer(layersList)
+  layersList = window.replaceMultilayer(layersList)
   counter = layersList.length
   while (counter--) {
     currentSVG = svg.querySelector('#' + layersList[counter])
@@ -22,9 +23,9 @@ function purgeHiddenLayers () {
   }
 }
 
-function showPupilObject (object, shape) {
+export function showPupilObject (object, shape) {
   var pupils = object.querySelectorAll('.pupil')
-  var shown = object.querySelectorAll('.pupil--' + shape)
+  // var shown = object.querySelectorAll('.pupil--' + shape)
   var counter = pupils.length
   while (counter--) {
     // pupils[counter].style
@@ -37,18 +38,19 @@ function showPupilObject (object, shape) {
   return object
 }
 
-function clearCharacter () {
+export function clearCharacter () {
   var svgContainer = document.querySelector('#svg1 .character-container')
   // Clear only what's in .current-character
   var toBeRemovedList = document.querySelectorAll('#svg1 .character-container > g')
   var counter = toBeRemovedList.length
   while (counter--) {
-    if (toBeRemovedList[counter].id != 'male_silhouette' && toBeRemovedList[counter].id != 'female_silhouette') {
+    if (toBeRemovedList[counter].id !== 'male_silhouette' && toBeRemovedList[counter].id !== 'female_silhouette') {
       svgContainer.removeChild(toBeRemovedList[counter])
     }
   }
 }
 
+/*
 function resetCharacterTemplate () {
   var characterSVG = document.querySelector('#svg1 .character-container')
   // Reset only what's in .current-character
@@ -58,13 +60,14 @@ function resetCharacterTemplate () {
   while (elementsCounter--) {
     if (elements[elementsCounter].style.opacity !== 0) {
       elements[elementsCounter].style.opactiy = '0'
-      selements[elementsCounter].style.pointerEvents = 'none'
+      elements[elementsCounter].style.pointerEvents = 'none'
     }
   }
 }
+*/
 
-function findNextLayerInDom (item) {
-  var sex = c.choices.sex
+export function findNextLayerInDom (item) {
+  var sex = window.c.choices.sex
   var svgContainer = document.querySelector('#svg1 .character-container')
   // TODO search within .current-character
   var nextLayerSibling = null
@@ -88,7 +91,7 @@ function findNextLayerInDom (item) {
   return nextLayerSibling
 }
 
-function bodyTypesToLayers (type) {
+export function bodyTypesToLayers (type) {
   var layers = []
 
   layers.push('body_torso_' + type)
