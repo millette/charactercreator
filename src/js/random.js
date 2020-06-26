@@ -212,7 +212,7 @@ function smartRandomSingle (ev) {
   var headCovered = false
   var forms
   var fabColor
-  var fabColorCounter = fabricPallette.length
+  var fabColorCounter = fabricPalette.length
 
   hash.clear()
   // First, clear the board and start from the silhouettes
@@ -246,7 +246,7 @@ function smartRandomSingle (ev) {
   defaultHairColor(newColor)
   defaultPupilShape()
   fabRoll = Math.floor((Math.random() * fabColorCounter))
-  fabColor = fabricPallette[fabRoll]
+  fabColor = fabricPalette[fabRoll]
 
   setTimeout(function () {
     counter = formLen = forms.length
