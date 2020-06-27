@@ -1,12 +1,15 @@
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "(whoami|login|logout|register)" }] */
+// TODO: import { loginMenu, clearInputFields, clearInputUsername, closeAllOverlays, closeOverlay, logoutUI } from modals.js
+// TODO: import { Character } from logic.js
+// TODO: import { clearCharacter } from layers.js
+// TODO: import { hashCharacter } from parse_hash.js
+// TODO: import { deleteChar, saveChar, newChar, createChar } from cast.js
 
-'use strict'
-
-var myUsername = false
+// var myUsername = false
 var currentUser = false
 var personnages = {}
 var personnageActuel = false
 
+// var fetchDb = (function () {
 var fetchDb = (function () {
   var baseOpts = {
     credentials: 'same-origin',
@@ -18,7 +21,7 @@ var fetchDb = (function () {
   var binary = ['get', 'delete', 'head']
   var ternary = ['post', 'put']
 
-  var fetchDb = function (path, body, method) {
+  var fetchDb22 = function (path, body, method) {
     var url = '/api/' + path
     var opts = {}
     if (!method && typeof body === 'string') {
@@ -38,16 +41,16 @@ var fetchDb = (function () {
     }
   }
 
-  binary.forEach(function (m) { fetchDb[m] = function (path) { return fetchDb(path, m) } })
-  ternary.forEach(function (m) { fetchDb[m] = function (path, body) { return fetchDb(path, body, m) } })
-  fetchDb.reject = function (resp, message) {
+  binary.forEach(function (m) { fetchDb22[m] = function (path) { return fetchDb22(path, m) } })
+  ternary.forEach(function (m) { fetchDb22[m] = function (path, body) { return fetchDb22(path, body, m) } })
+  fetchDb22.reject = function (resp, message) {
     var err = new Error(message || resp.statusText)
     err.statusText = resp.statusText
     err.status = resp.status
     err.url = resp.url
     return Promise.reject(err)
   }
-  return fetchDb
+  return fetchDb22
 }())
 
 function deleteDbSession () {
@@ -89,7 +92,7 @@ function updateDbUser (user) {
         return fetchDb.reject(resp, 'Not saving, _rev fields don\'t match')
       }
       if (resp.status === 404) {
-        loginMenu()
+        window.loginMenu()
         return fetchDb.reject(resp, 'Not logged in.')
       }
       return fetchDb.reject(resp)
@@ -129,7 +132,7 @@ function showErrorUsernamePasswordMismatch () {
   // console.log('errorBox');
   var errorText = errorBox.querySelector('.overlay__error__text')
   var errorMsg = 'Sorry, username/password mismatch. Please try again.'
-  clearInputFields()
+  window.clearInputFields()
   errorText.innerHTML = errorMsg
   errorBox.classList.add('overlay__error--show')
   console.log('Sorry, username/password mismatch')
@@ -170,42 +173,42 @@ function showErrorUsernameTaken (username) {
   errorText.innerHTML = errorMsg
   errorBox.classList.add('overlay__error--show')
   // console.log("C'est pris!");
-  clearInputUsername()
+  window.clearInputUsername()
 }
 
-function whoami (ev) {
+export function whoami (ev) {
   ev.preventDefault()
   var overlay = document.querySelector('.js-character-list')
   var closeBtn = overlay.querySelector('.close-btn')
-  closeAllOverlays()
+  window.closeAllOverlays()
   overlay.classList.add('overlay--show')
-  overlay.addEventListener('click', closeOverlay, true)
-  closeBtn.addEventListener('click', closeOverlay, false)
+  overlay.addEventListener('click', window.closeOverlay, true)
+  closeBtn.addEventListener('click', window.closeOverlay, false)
 }
 
-function logout (ev) {
+export function logout (ev) {
   ev.preventDefault()
   deleteDbSession()
     .then(function (json) {
       currentUser = false
       personnages = {}
       personnageActuel = false
-      myUsername = false
+      // myUsername = false
       return json
     })
     .catch(function (err) {
       console.error('err4', err)
     })
-  logoutUI()
+  window.logoutUI()
 }
 
-function login (evt) {
+export function login (evt) {
   evt.preventDefault()
   var event = evt
   var username = event.target.children[0].lastElementChild.value
   var password = event.target.children[1].lastElementChild.value
-  var login = document.querySelector('.overlay--show')
-  var currentCharacter
+  var login22 = document.querySelector('.overlay--show')
+  // var currentCharacter
 
   if (!username || !password) {
     console.log('missing username or password.')
@@ -214,7 +217,7 @@ function login (evt) {
 
   loginDbUser(username, password)
     .then(function () {
-      myUsername = username
+      // myUsername = username
       return getDbUser(username)
     })
     .then(function (user) {
@@ -225,16 +228,17 @@ function login (evt) {
       for (r in u) {
         t.push(encodeURIComponent(r) + '=' + encodeURIComponent(u[r]))
       }
-      clearInputFields()
-      login.classList.remove('overlay--show')
+      window.clearInputFields()
+      login22.classList.remove('overlay--show')
       manageCharacters(user)
-      ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'login', eventLabel: 'Successful login' })
+      window.ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'login', eventLabel: 'Successful login' })
     })
     .catch(function (err) {
       console.error('err3', err)
     })
 }
 
+/*
 function inheritNewCharacter () {
   var newCharModal = document.querySelector('.js-login-new-character')
   var hasHash = hash.get('sex')
@@ -249,7 +253,9 @@ function inheritNewCharacter () {
   newCharModal.classList.add('overlay--show')
   newCharModal.addEventListener('click', closeNewCharacterOverlay, false)
 }
+*/
 
+/*
 function continueNewCharacter (evt) {
   evt.preventDefault()
   var newCharModal = document.querySelector('.overlay--show')
@@ -260,7 +266,9 @@ function continueNewCharacter (evt) {
   createBtn.addEventListener('click', requestNewCharacterName)
   nameCharModal.classList.add('overlay--show')
 }
+*/
 
+/*
 function requestNewCharacterName (evt) {
   evt.preventDefault()
   var nameCharModal = document.querySelector('.overlay--show')
@@ -268,7 +276,9 @@ function requestNewCharacterName (evt) {
     nameCharModal.classList.remove('overlay--show')
   }
 }
+*/
 
+/*
 function loadCharacter (evt) {
   var characterSVG = document.querySelector('#svg1')
   var newCharModal = document.querySelector('.overlay--show')
@@ -285,7 +295,9 @@ function loadCharacter (evt) {
     }
   }, 500)
 }
+*/
 
+/*
 function closeNewCharacterOverlay (evt) {
   var overlay = document.querySelector('.js-login-new-character')
   var target = evt.target
@@ -296,6 +308,7 @@ function closeNewCharacterOverlay (evt) {
     }
   }
 }
+*/
 
 function switchCharacter (evt) {
   evt.preventDefault()
@@ -303,11 +316,11 @@ function switchCharacter (evt) {
   var characterListUI = document.querySelector('.js-character-list')
   var characterSVG = document.querySelector('#svg1')
   var newCard = this.parentNode.parentNode
-  var newChar = newCard.querySelector('.overlay__char-name').innerHTML
+  var newChar22 = newCard.querySelector('.overlay__char-name').innerHTML
   var oldCard = document.querySelector('.overlay__char--current')
   var currentClass = characterSVG.getAttribute('class')
   var newClass = currentClass + ' ' + 'character--hide'
-  var charGender = currentUser.cc.personnages[newChar].sex
+  var charGender = currentUser.cc.personnages[newChar22].sex
   if (currentClass === '') {
     if (charGender === 'f') {
       currentClass = 'select-female'
@@ -321,7 +334,7 @@ function switchCharacter (evt) {
     oldCard.classList.remove('overlay__char--current')
   }
   newCard.classList.add('overlay__char--current')
-  currentUser.cc.personnageActuel = newChar
+  currentUser.cc.personnageActuel = newChar22
   characterListUI.classList.remove('overlay--show')
   characterSVG.setAttribute('class', newClass)
 
@@ -331,23 +344,23 @@ function switchCharacter (evt) {
       return json
     })
     .then(function (json) {
-      window.sex = currentUser.cc.personnages[newChar].sex
-      choices = currentUser.cc.personnages[newChar]
-      c = new Character(choices)
-      hash.clear()
+      window.sex = currentUser.cc.personnages[newChar22].sex
+      choices = currentUser.cc.personnages[newChar22]
+      window.c = new window.Character(choices)
+      window.hash.clear()
       setTimeout(function () {
-        clearCharacter()
-        hashCharacter()
+        window.clearCharacter()
+        window.hashCharacter()
         setHashTrigger()
       }, 500)
-      ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Edit', eventLabel: 'Edit existing character' })
+      window.ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Edit', eventLabel: 'Edit existing character' })
     })
     .catch(function (err) {
       console.log('err', err)
     })
 }
 
-function revealCharacter () {
+export function revealCharacter () {
   var characterSVG = document.querySelector('#svg1')
   characterSVG.classList.remove('character--hide')
 }
@@ -392,14 +405,14 @@ function manageCharacters () {
   delBtns = charUI.querySelectorAll('.overlay__char-delete')
   delBtnsNum = delBtns.length
   while (delBtnsNum--) {
-    delBtns[delBtnsNum].addEventListener('click', deleteChar)
+    delBtns[delBtnsNum].addEventListener('click', window.deleteChar)
   }
   userTitle.innerHTML = currentUser.name
   usernameText.innerHTML = currentUser.name
   pageWrap.classList.add('logged')
-  saveBtn.addEventListener('click', saveChar, true)
-  newBtn.addEventListener('click', newChar, true)
-  createBtn.addEventListener('click', createChar, true)
+  saveBtn.addEventListener('click', window.saveChar, true)
+  newBtn.addEventListener('click', window.newChar, true)
+  createBtn.addEventListener('click', window.createChar, true)
 }
 
 function resetCharacters () {
@@ -410,23 +423,23 @@ function resetCharacters () {
   })
 }
 
-function registerMenu () {
-  var loginMenu = document.querySelector('.js-login')
+export function registerMenu () {
+  var loginMenu22 = document.querySelector('.js-login')
   var overlay = document.querySelector('.js-register')
   var registerForm = document.querySelector('#register-form')
   var firstInput = overlay.querySelector('.first-input')
   var closeBtn = overlay.querySelector('.close-btn')
 
-  if (loginMenu.classList.contains('overlay--show')) {
-    loginMenu.classList.remove('overlay--show')
+  if (loginMenu22.classList.contains('overlay--show')) {
+    loginMenu22.classList.remove('overlay--show')
   }
 
-  closeAllOverlays()
+  window.closeAllOverlays()
   overlay.classList.add('overlay--show')
   registerForm.addEventListener('submit', register, true)
   overlay.addEventListener('click', closeRegister, true)
   firstInput.focus()
-  closeBtn.addEventListener('click', closeOverlay, false)
+  closeBtn.addEventListener('click', window.closeOverlay, false)
 }
 
 function closeRegister (evt) {
@@ -437,7 +450,7 @@ function closeRegister (evt) {
   if (target === overlay || target === cancelBtn) {
     var register = document.querySelector('.overlay--show')
     if (register) {
-      clearInputFields()
+      window.clearInputFields()
       register.classList.remove('overlay--show')
     }
   }
@@ -478,7 +491,7 @@ function register (evt) {
       currentUser = user
       manageCharacters(currentUser)
       register.classList.remove('overlay--show')
-      ga('send', 'event', { eventCategory: 'Conversion', eventAction: 'Register', eventLabel: 'Successfuly Registered account' })
+      window.ga('send', 'event', { eventCategory: 'Conversion', eventAction: 'Register', eventLabel: 'Successfuly Registered account' })
     })
     .catch(function (err) {
       console.error('register err', err)
@@ -490,7 +503,7 @@ getDbSession()
   .then(function (user) {
     var r
     var t = []
-    myUsername = user.name
+    // myUsername = user.name
     currentUser = user
     if (user.cc && user.cc.personnages &&
       user.cc.personnageActuel &&
@@ -521,8 +534,4 @@ function triggerSaveBtn () {
   if (saveBtn) {
     saveBtn.classList.add('save--enabled')
   }
-}
-
-function logOut () {
-  // TODO Return app to its initial state.
 }
