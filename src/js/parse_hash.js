@@ -178,7 +178,7 @@ function personnageActuelToHash (currentUser) {
   }
 }
 
-function interpretHash () {
+export function interpretHash () {
   var hashSex = window.hash.get('sex')
   if (hashSex === 'm') {
     // FIXME: import...
