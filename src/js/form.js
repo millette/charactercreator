@@ -1,11 +1,22 @@
-function createForm (sex, forms) {
+// TODO: import { GetEmotionGetLayers, show } from logic.js
+// TODO: import { fromEmotionGetLayers, bodyTypesToLayers } from loader.js
+// TODO: import { getViewBox } from viewBox.js
+// TODO: import { showThumbOptions, openThumbs } from thumbnails.js
+// TODO: import { addColorPicker } from colorpicker.js
+// TODO: import { colorElement } from colorize.js
+// TODO: import { getMultiLayer } from main.js
+// TODO: import { capitalizeFirstLetter, isInArray, getParent } from helper.js
+// TODO: import { showPupilObject, findNextLayerInDom } from layers.js
+// TODO: import { sectionZoom } from zoom.js
+
+export function createForm (sex, forms) {
   var svgContent = ''
   var itemsThumbsContent = document.querySelector('#content_1')
 
   itemsThumbsContent.innerHTML = ''
 
-  var sex = sex || c.choices.sex
-  var forms = forms || window.forms
+  sex = sex || window.c.choices.sex
+  forms = forms || window.forms
   var sectionNames = ['Head', 'Accessories', 'Torso', 'Body', 'Legs', 'Feet']
   var sectionHtml = '<h2 class="sidebar__title"><svg class="icon"><use xlink:href="#icon-coathanger"></use></svg>Categories</h2>'
 
@@ -14,61 +25,73 @@ function createForm (sex, forms) {
   for (var f in forms) {
     var formContainer = document.querySelector('#content_1')
     var newHtml = ''
-    var selcount = 0
+    // var selcount = 0
 
     sectionHtml += '<section class="accordeon__section-label"><span class="accordeon__section-title"><svg class="icon"><use xlink:href="#' + getIconId(sectionNames[f], sex) + '"></use></svg><span class="accordeon__section-title__text">' + sectionNames[f] + '</span></span><div class="accordeon__svg-container section-btn--hide"><svg width="1em" height="1em"><use xlink:href="#accordeon_btn"/></svg></div></section><div class="accordeon__content section--hide">'
 
-    var formsLength = forms.length
-    var formCounter = formsLength
+    // var formsLength = forms.length
+    // var formCounter = formsLength
 
     for (var x in forms[f]) {
       sectionHtml += '    <a class="section__link"><li class="sbl__option" tabindex="0">' + x + '</li></a>'
       var sectionTitle = x
       var t = sectionTitle.toLowerCase()
       newHtml += '    <div class="Row options__container options__' + t + '"><span class="svg__section__title">' + t + '</span><div class="thumbnails__container">'
-      var xsel = hash.get(t)
-      var options = forms[f][x].map(function (d, i) {
+      // var xsel = hash.get(t)
+
+      // TODO: This map() has side-effects, probably needed after all; should be a forEach()?
+      // var options = forms[f][x].map(function (d, i) {
+      forms[f][x].forEach(function (d) {
         var tempId = '#' + t + '_' + d
         var multiLayer = window.multiLayer
         var sections = getSectionsFromIdMultiLayer(multiLayer, tempId)
 
         if (t === 'emotion') {
-          var sections = []
-          var emotions = GetEmotionGetLayers(d)
-          for (emo in emotions) {
-            var newEmo = '#' + emotions[emo] + '_' + d
-            sections.push(newEmo)
-          };
+          // var sections = []
+          sections = []
+          var emotions = window.GetEmotionGetLayers(d)
+          for (var emo in emotions) {
+            sections.push('#' + emotions[emo] + '_' + d)
+          }
         }
 
-        var viewBox = getViewBox(t, d)
+        var viewBox = window.getViewBox(t, d)
 
         console.log('t', t)
         console.log('d', d)
 
-        if (d === '') { svgContent = '<use xlink:href="#icon-none"></use>' } else { svgContent = '' }
+        if (d === '') {
+          svgContent = '<use xlink:href="#icon-none"></use>'
+        } else {
+          svgContent = ''
+        }
         newHtml += '    <div class="option__container option__' + t + '_' + d + '" tabindex="0"><svg viewBox="' + viewBox + '" class="svg__option ' + t + '_' + d + '">' + svgContent + '</svg><span class="option__label">' + d + '</span></div>'
-      }).join('\n')
+      }) // .join('\n')
 
-      var defaultValue = hash.get(x)
+      // var defaultValue = window.hash.get(x)
 
+      /*
       if (defaultValue !== undefined) {
         var defval = 'selected="' + defaultValue + '" '
       } else {
         var defval = ''
       }
+      */
 
-      htagc = x.toLowerCase() + 'Color'
-      var hashColor = hash.get(htagc)
+      // htagc = x.toLowerCase() + 'Color'
+      // var hashColor = hash.get(htagc)
+      /*
+      var hashColor = hash.get(x.toLowerCase() + 'Color')
 
       if (hashColor !== undefined) {
         var colorValue = hashColor
       } else {
         var colorValue = '#ffffff'
       }
+      */
       newHtml += '    </div>'
       newHtml += '</div>'
-      selcount++
+      // selcount++
       console.log('newHtml', newHtml)
     }
     sectionHtml += '</div>'
@@ -90,18 +113,19 @@ function createForm (sex, forms) {
   var sectionButtons = document.querySelectorAll('.accordeon__section-label')
   var sectionColor = document.querySelectorAll('.section__color')
 
-  addEventListenerList(sidebarLeftOptions, 'mouseover', showThumbOptions)
-  addEventListenerList(sidebarLeftOptions, 'focus', showThumbOptions)
-  addEventListenerList(sidebarLeftOptions, 'click', openThumbs)
+  addEventListenerList(sidebarLeftOptions, 'mouseover', window.showThumbOptions)
+  addEventListenerList(sidebarLeftOptions, 'focus', window.showThumbOptions)
+  addEventListenerList(sidebarLeftOptions, 'click', window.openThumbs)
   addEventListenerList(optionThumbnails, 'click', changeOption)
   addEventListenerList(sectionButtons, 'click', toggleSection)
-  addEventListenerList(sectionColor, 'click', addColorPicker)
+  addEventListenerList(sectionColor, 'click', window.addColorPicker)
 }
 
 function getSectionsFromIdMultiLayer (multiLayer, tempId) {
   var sections = []
+  var newLayer
 
-  for (lyr in multiLayer) {
+  for (var lyr in multiLayer) {
     if (tempId.slice(1) === multiLayer[lyr][0]) {
       for (var i = 1; i <= multiLayer[lyr][1]; i++) {
         newLayer = tempId + '_' + i + '_of_' + multiLayer[lyr][1]
@@ -115,15 +139,14 @@ function getSectionsFromIdMultiLayer (multiLayer, tempId) {
   return sections
 }
 
-function getSectionLayersList (section) {
-  var sex = c.choices.sex
+export function getSectionLayersList (section) {
   var formList
   var formCounter
   var itemList
 
-  section = capitalizeFirstLetter(section)
+  section = window.capitalizeFirstLetter(section)
 
-  if (sex === 'm') {
+  if (window.c.choices.sex === 'm') {
     formList = window.maleFormList
   } else {
     formList = window.femaleFormList
@@ -139,10 +162,9 @@ function getSectionLayersList (section) {
 }
 
 function replaceMultilayer (layersList, section) {
-  var multiLayer = getMultiLayer()
-  var sex = c.choices.sex
+  var multiLayer = window.getMultiLayer()
+  // var sex = c.choices.sex
   var counter = layersList.length
-  var multiLayer = getMultiLayer()
   var multiCounter
   var fullList = []
   var currentItem
@@ -150,16 +172,16 @@ function replaceMultilayer (layersList, section) {
   var currentIndex
   var qtyCounter
 
-  if (section != undefined) {
+  if (section !== undefined) {
     while (counter--) {
-      if (layersList[counter] != '') {
+      if (layersList[counter] !== '') {
         fullList.push(section + '_' + layersList[counter])
       }
     }
   } else {
     counter = layersList.length
     while (counter--) {
-      if (layersList[counter].slice(-1) != '_') {
+      if (layersList[counter].slice(-1) !== '_') {
         fullList.push(layersList[counter])
       }
     }
@@ -168,7 +190,7 @@ function replaceMultilayer (layersList, section) {
 
   while (multiCounter--) {
     currentItem = multiLayer[multiCounter][0]
-    if (isInArray(currentItem, fullList)) {
+    if (window.isInArray(currentItem, fullList)) {
       currentIndex = fullList.indexOf(currentItem)
       fullList.splice(currentIndex, 1)
       currentQty = multiLayer[multiCounter][1]
@@ -181,21 +203,21 @@ function replaceMultilayer (layersList, section) {
   return fullList
 }
 
-function loadSectionLayers (section, layersList, callback, callbackLoopFlag) {
+export function loadSectionLayers (section, layersList, callback, callbackLoopFlag) {
   var tempLayerList = []
   var layerCounter
   layerCounter = layersList.length
 
   if (section === 'emotion') {
     while (layerCounter--) {
-      tempLayerList = tempLayerList.concat(fromEmotionGetLayers(layersList[layerCounter]))
+      tempLayerList = tempLayerList.concat(window.fromEmotionGetLayers(layersList[layerCounter]))
     }
     layersList = tempLayerList
   } else if (section === 'pupils') {
     layersList = ['eyeballs_default']
   } else if (section === 'body') {
     while (layerCounter--) {
-      tempLayerList = tempLayerList.concat(bodyTypesToLayers(layersList[layerCounter]))
+      tempLayerList = tempLayerList.concat(window.bodyTypesToLayers(layersList[layerCounter]))
     }
     layersList = tempLayerList
   } else {
@@ -206,13 +228,12 @@ function loadSectionLayers (section, layersList, callback, callbackLoopFlag) {
 
 function loadFilesFromList (layersList, callback, callbackLoopFlag) {
   var layerDirectory
-  var sex = c.choices.sex
   var file
   var layerID
   var counter
   var layers
 
-  if (sex === 'm') {
+  if (window.c.choices.sex === 'm') {
     layerDirectory = 'layer/male/'
     layers = window.layersMale
   } else {
@@ -230,14 +251,14 @@ function loadFilesFromList (layersList, callback, callbackLoopFlag) {
     }
 
     file = layerDirectory + layerID + '.svg'
-    fetch(file).then(function (response) {
+    window.fetch(file).then(function (response) {
       return response.text()
     }).then(function (text) {
       var htmlObject = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
       var svgObject
       var pupilShape
       var layerID
-      var layerIDArray
+      // var layerIDArray
       var nextLayerSibling
       var svgContainer = document.querySelector('#svg1 .character-container')
       var outline = svgContainer.querySelector('#outline')
@@ -248,15 +269,15 @@ function loadFilesFromList (layersList, callback, callbackLoopFlag) {
         svgObject.style.opacity = 0
         svgObject.style.pointerEvents = 'none'
       }
-      svgObject = colorElement(svgObject)
+      svgObject = window.colorElement(svgObject)
       layerID = svgObject.id
 
       if (layerID === 'eyeballs_default') {
         pupilShape = getPupilShape()
-        svgObject = showPupilObject(svgObject, pupilShape)
+        svgObject = window.showPupilObject(svgObject, pupilShape)
       }
-      layerIDArray = layerID.split('_')
-      nextLayerSibling = findNextLayerInDom(layerID)
+      // layerIDArray = layerID.split('_')
+      nextLayerSibling = window.findNextLayerInDom(layerID)
       if ((svgContainer.querySelector('#' + layerID)) === null) {
         if (nextLayerSibling != null) {
           nextLayerSibling.parentNode.insertBefore(svgObject, nextLayerSibling)
@@ -283,7 +304,7 @@ function loadFilesFromList (layersList, callback, callbackLoopFlag) {
 }
 
 function getPupilShape () {
-  return c.choices.pupils || 'round'
+  return window.c.choices.pupils || 'round'
 }
 
 function addEventListenerList (list, event, fn) {
@@ -308,7 +329,7 @@ function closeSections (exception) {
       var button = displayButtons[i]
       var sectionContent = section.nextSibling
 
-      if (sectionContent.classList === undefined && sectionContent.nextSibling.classList != undefined) {
+      if (sectionContent.classList === undefined && sectionContent.nextSibling.classList !== undefined) {
         sectionContent = sectionContent.nextSibling
       }
       if (!sectionContent.classList.contains('section--hide')) {
@@ -325,12 +346,12 @@ function toggleSection (ev) {
   var el = ev.target
   var sectionLabel
   var elChild
-  var parent = getParent(el, '.accordeon__section-label')
+  var parent = window.getParent(el, '.accordeon__section-label')
   elChild = parent.querySelector('.accordeon__section-title__text')
 
   if (elChild != null) {
     sectionLabel = elChild.innerHTML
-    sectionZoom(sectionLabel)
+    window.sectionZoom(sectionLabel)
   }
 
   var _ = this
@@ -347,7 +368,7 @@ function showSection (_) {
   var maxHeight
   var displayButton
 
-  if (sectionContent.classList === undefined && sectionContent.nextSibling.classList != undefined) {
+  if (sectionContent.classList === undefined && sectionContent.nextSibling.classList !== undefined) {
     sectionContent = sectionContent.nextSibling
   }
   maxHeight = sectionContent.clientHeight
@@ -377,10 +398,10 @@ function changeOption () {
   var category = this.parentNode.parentNode.firstChild.innerHTML
   var userChoice = this.lastChild.innerHTML
   var colors = document.querySelector('.colorpicker-wrapper').previousSibling
-  if (colors.classList === undefined && colors.previousSibling.classList != undefined) {
+  if (colors.classList === undefined && colors.previousSibling.classList !== undefined) {
     colors = colors.previousSibling
   }
-  show(userChoice, category)
+  window.show(userChoice, category)
   colors.classList.add('alert')
 }
 
