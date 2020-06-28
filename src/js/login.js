@@ -529,7 +529,7 @@ function setHashTrigger () {
   window.addEventListener('hashchange', triggerSaveBtn, false)
 }
 
-function triggerSaveBtn () {
+export function triggerSaveBtn () {
   var saveBtn = document.querySelector('.save-btn')
   if (saveBtn) {
     saveBtn.classList.add('save--enabled')
