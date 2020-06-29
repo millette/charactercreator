@@ -5,7 +5,7 @@
 // TODO: import { deleteChar, saveChar, newChar, createChar } from cast.js
 
 // var myUsername = false
-var currentUser = false
+// var currentUser = false
 var personnages = {}
 var personnageActuel = false
 
@@ -190,7 +190,7 @@ export function logout (ev) {
   ev.preventDefault()
   deleteDbSession()
     .then(function (json) {
-      currentUser = false
+      window.currentUser = false
       personnages = {}
       personnageActuel = false
       // myUsername = false
@@ -221,8 +221,8 @@ export function login (evt) {
       return getDbUser(username)
     })
     .then(function (user) {
-      currentUser = user
-      var u = currentUser.cc.personnages[currentUser.cc.personnageActuel]
+      window.currentUser = user
+      var u = window.currentUser.cc.personnages[window.currentUser.cc.personnageActuel]
       var r
       var t = []
       for (r in u) {
@@ -320,7 +320,7 @@ function switchCharacter (evt) {
   var oldCard = document.querySelector('.overlay__char--current')
   var currentClass = characterSVG.getAttribute('class')
   var newClass = currentClass + ' ' + 'character--hide'
-  var charGender = currentUser.cc.personnages[newChar22].sex
+  var charGender = window.currentUser.cc.personnages[newChar22].sex
   if (currentClass === '') {
     if (charGender === 'f') {
       currentClass = 'select-female'
@@ -334,18 +334,18 @@ function switchCharacter (evt) {
     oldCard.classList.remove('overlay__char--current')
   }
   newCard.classList.add('overlay__char--current')
-  currentUser.cc.personnageActuel = newChar22
+  window.currentUser.cc.personnageActuel = newChar22
   characterListUI.classList.remove('overlay--show')
   characterSVG.setAttribute('class', newClass)
 
-  updateDbUser(currentUser)
+  updateDbUser(window.currentUser)
     .then(function (json) {
-      currentUser._rev = json.rev
+      window.currentUser._rev = json.rev
       return json
     })
     .then(function (json) {
-      window.sex = currentUser.cc.personnages[newChar22].sex
-      choices = currentUser.cc.personnages[newChar22]
+      window.sex = window.currentUser.cc.personnages[newChar22].sex
+      choices = window.currentUser.cc.personnages[newChar22]
       window.c = new window.Character(choices)
       window.hash.clear()
       setTimeout(function () {
@@ -369,10 +369,10 @@ function manageCharacters () {
   var charUI = document.querySelector('.js-character-list')
   var userTitle = charUI.querySelector('.overlay__title')
   var charCard = charUI.querySelector('.overlay__char-card--orig')
-  var charList = Object.keys(currentUser.cc.personnages)
+  var charList = Object.keys(window.currentUser.cc.personnages)
   var charNum = charList.length
   var charContainer = charUI.querySelector('.overlay__container--char-list')
-  var charCurrent = currentUser.cc.personnageActuel
+  var charCurrent = window.currentUser.cc.personnageActuel
   var usernameButton = document.querySelector('#usernameButton')
   var usernameText = usernameButton.querySelector('.menu-text')
   var pageWrap = document.querySelector('#pagewrap')
@@ -407,8 +407,8 @@ function manageCharacters () {
   while (delBtnsNum--) {
     delBtns[delBtnsNum].addEventListener('click', window.deleteChar)
   }
-  userTitle.innerHTML = currentUser.name
-  usernameText.innerHTML = currentUser.name
+  userTitle.innerHTML = window.currentUser.name
+  usernameText.innerHTML = window.currentUser.name
   pageWrap.classList.add('logged')
   saveBtn.addEventListener('click', window.saveChar, true)
   newBtn.addEventListener('click', window.newChar, true)
@@ -488,8 +488,8 @@ function register (evt) {
     })
     .then(getDbUser)
     .then(function (user) {
-      currentUser = user
-      manageCharacters(currentUser)
+      window.currentUser = user
+      manageCharacters(window.currentUser)
       register.classList.remove('overlay--show')
       window.ga('send', 'event', { eventCategory: 'Conversion', eventAction: 'Register', eventLabel: 'Successfuly Registered account' })
     })
@@ -504,7 +504,7 @@ getDbSession()
     var r
     var t = []
     // myUsername = user.name
-    currentUser = user
+    window.currentUser = user
     if (user.cc && user.cc.personnages &&
       user.cc.personnageActuel &&
       user.cc.personnages[user.cc.personnageActuel]
@@ -519,7 +519,7 @@ getDbSession()
         )
       }
     }
-    manageCharacters(currentUser)
+    manageCharacters(window.currentUser)
   })
   .catch(function (err) {
     console.log('getDbUser error', err)
