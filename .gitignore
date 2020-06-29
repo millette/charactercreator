@@ -8,4 +8,7 @@ build/
 cc-v2.code-workspace
 css/
 target-ungit/
+was-target/
 to-lint.txt
+target/
+
