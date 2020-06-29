@@ -1,8 +1,28 @@
+// TODO: import { showAbout, showFAQ, loginMenu, closeAllOverlays, closeOverlay } from modals.js
+// TODO: import { whoami, logout, registerMenu } from login.js
+// TODO: import { rollCredits } from credits.js
+// TODO: import { hamburger } from hamburger-menu.js
+// TODO: import { viewBoxZoom, zoomFull, sectionZoom } from zoom.js
+// TODO: import { smartRandomSingle } from random.js
+// TODO: import { download } from download.js
+// TODO: import { Character } from logic.js
+// TODO: import { closeSections, showSection, loadFilesFromList } from form.js
+// TODO: import { hideColorPicker } from colorpicker.js
+// TODO: import { openThumbsLogic } from thumbnails.js
+// TODO: import { interpretHash, parseHash } from parse_hash.js
+// TODO: import { choicesToList, choicesToLayers, onAllLoaded } from loader.js
+// TODO: import { applyClipPath } from clippaths.js
+// TODO: import { rgb2hex } from helper.js
+// TODO: import { defaultEyeColor, defaultHairColor } from color-defaults.js
+
+var c // Main variable to hold user choices and preferences
+var currentUser = false
+var forms
+
 window.onload = function () {
-  var c // Main variable to hold user choices and preferences
   var aboutBtn = document.querySelector('#aboutButton')
   var faqBtn = document.querySelector('#faqButton')
-  var shopBtn = document.querySelector('#shopButton')
+  // var shopBtn = document.querySelector('#shopButton')
   var whoBtn = document.querySelector('#whoButton')
   var logoutBtn = document.querySelector('#logoutButton')
   var loginBtn = document.querySelector('#loginButton')
@@ -14,7 +34,8 @@ window.onload = function () {
   var maleSilhouette = document.getElementById('male_silhouette')
   var femaleSilhouette = document.getElementById('female_silhouette')
   var rightSidebar = document.querySelector('#sidebar')
-  var rightSidebarClone = rightSidebar.cloneNode(true)
+  // var rightSidebarClone = rightSidebar.cloneNode(true)
+  rightSidebar.cloneNode(true)
   var svgContainer = document.querySelector('#svg1')
   var patreonLink = document.querySelector('#patreonButton')
   var patreonBtn = document.querySelector('#patreon-btn')
@@ -26,17 +47,17 @@ window.onload = function () {
   var bigRedBtn = document.querySelector('#bigRedButton')
   var downloadBtn = document.querySelector('#proceed-download')
 
-  if (aboutBtn && typeof showAbout === 'function') { aboutBtn.addEventListener('click', showAbout, false) }
-  if (faqBtn && typeof showFAQ === 'function') { faqBtn.addEventListener('click', showFAQ, false) }
+  if (aboutBtn && typeof window.showAbout === 'function') { aboutBtn.addEventListener('click', window.showAbout, false) }
+  if (faqBtn && typeof window.showFAQ === 'function') { faqBtn.addEventListener('click', window.showFAQ, false) }
   // if (shopBtn && typeof showShop === 'function') { shopBtn.addEventListener('click', showShop, false) }
-  if (whoBtn && typeof whoami === 'function') { whoBtn.addEventListener('click', whoami, false) }
-  if (logoutBtn && typeof logout === 'function') { logoutBtn.addEventListener('click', logout, false) }
-  if (loginBtn && typeof loginMenu === 'function') { loginBtn.addEventListener('click', loginMenu, false) }
-  if (registerBtn && typeof registerMenu === 'function') { registerBtn.addEventListener('click', registerMenu, false) }
-  if (registerLink && typeof registerMenu === 'function') { registerLink.addEventListener('click', registerMenu, false) }
-  if (creditsBtn && typeof rollCredits === 'function') { creditsBtn.addEventListener('click', rollCredits, false) }
-  if (hamburgerBtn && typeof hamburger === 'function') { hamburgerBtn.addEventListener('click', hamburger, false) }
-  if (zoomBtn && typeof viewBoxZoom === 'function') { zoomBtn.addEventListener('change', viewBoxZoom, false) }
+  if (whoBtn && typeof window.whoami === 'function') { whoBtn.addEventListener('click', window.whoami, false) }
+  if (logoutBtn && typeof window.logout === 'function') { logoutBtn.addEventListener('click', window.logout, false) }
+  if (loginBtn && typeof window.loginMenu === 'function') { loginBtn.addEventListener('click', window.loginMenu, false) }
+  if (registerBtn && typeof window.registerMenu === 'function') { registerBtn.addEventListener('click', window.registerMenu, false) }
+  if (registerLink && typeof window.registerMenu === 'function') { registerLink.addEventListener('click', window.registerMenu, false) }
+  if (creditsBtn && typeof window.rollCredits === 'function') { creditsBtn.addEventListener('click', window.rollCredits, false) }
+  if (hamburgerBtn && typeof window.hamburger === 'function') { hamburgerBtn.addEventListener('click', window.hamburger, false) }
+  if (zoomBtn && typeof window.viewBoxZoom === 'function') { zoomBtn.addEventListener('change', window.viewBoxZoom, false) }
   if (maleSilhouette && typeof selectMale === 'function') { maleSilhouette.addEventListener('click', selectMale, false) }
   if (femaleSilhouette && typeof selectFemale === 'function') { femaleSilhouette.addEventListener('click', selectFemale, false) }
   if (svgContainer && typeof clickSelect === 'function') { svgContainer.addEventListener('click', clickSelect, false) }
@@ -48,15 +69,15 @@ window.onload = function () {
   if (saveCharToCloudBtn && typeof saveCharToCloud === 'function') { saveCharToCloudBtn.addEventListener('click', saveCharToCloud, false) }
   if (loadCharBtn && typeof gotoLoadChar === 'function') { loadCharBtn.addEventListener('click', gotoLoadChar, false) }
   if (nightModeBtn && typeof switchNightMode === 'function') { nightModeBtn.addEventListener('click', switchNightMode, false) }
-  if (bigRedBtn && typeof smartRandomSingle === 'function') { bigRedBtn.addEventListener('click', smartRandomSingle, false) }
-  if (downloadBtn && typeof download === 'function') { downloadBtn.addEventListener('click', download, false) }
+  // if (bigRedBtn && typeof window.smartRandomSingle === 'function') { bigRedBtn.addEventListener('click', window.smartRandomSingle, false) }
+  if (downloadBtn && typeof window.download === 'function') { downloadBtn.addEventListener('click', window.download, false) }
 
   // checkNightMode()
   startup()
 }
 
 function saveCharToCloud (ev) {
-  preventDefault(ev)
+  ev.preventDefault()
   console.log('saveCharToCloud')
   // Close current modal
   // Check if user is logged in
@@ -64,6 +85,7 @@ function saveCharToCloud (ev) {
   // If not, prompt to name the character in the cast modal
 }
 
+/*
 function checkNightMode () {
   var body = document.querySelector('BODY')
   var checkBox = document.querySelector('#nightModeBox')
@@ -72,13 +94,14 @@ function checkNightMode () {
     body.classList.toggle('night')
   }
 }
+*/
 
 function switchNightMode (ev) {
   // document.documentElement.setAttribute('data-theme', 'lighttheme');
-  ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Dark/Light', eventLabel: 'Switch between Dark mode and Light mode' })
+  window.ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Dark/Light', eventLabel: 'Switch between Dark mode and Light mode' })
   ev.preventDefault()
   var body = document.querySelector('BODY')
-  hamburger()
+  window.hamburger()
 
   if (body.classList === '') {
     document.documentElement.setAttribute('data-theme', 'darktheme')
@@ -89,15 +112,15 @@ function switchNightMode (ev) {
 }
 
 function tattle () {
-  ga('send', 'event', { eventCategory: 'Conversion', eventAction: 'Navbar | Patreon', eventLabel: 'Open Patreon page from the Navbar/Hamburger menu.' })
+  window.ga('send', 'event', { eventCategory: 'Conversion', eventAction: 'Navbar | Patreon', eventLabel: 'Open Patreon page from the Navbar/Hamburger menu.' })
 }
 
 function gotoPatreon (evt) {
   if (evt) {
     evt.preventDefault()
   }
-  ga('send', 'event', { eventCategory: 'Conversion', eventAction: 'Caboose | Patreon', eventLabel: 'Open Patreon page from Caboose modal.' })
-  closeAllOverlays()
+  window.ga('send', 'event', { eventCategory: 'Conversion', eventAction: 'Caboose | Patreon', eventLabel: 'Open Patreon page from Caboose modal.' })
+  window.closeAllOverlays()
   setTimeout(function () { window.open('https://www.patreon.com/charactercreator') }, 500)
 }
 
@@ -105,8 +128,8 @@ function gotoBrave (evt) {
   if (evt) {
     evt.preventDefault()
   }
-  ga('send', 'event', { eventCategory: 'Conversion', eventAction: 'Caboose | Brave', eventLabel: 'Open Brave Browser page from Caboose modal.' })
-  closeAllOverlays()
+  window.ga('send', 'event', { eventCategory: 'Conversion', eventAction: 'Caboose | Brave', eventLabel: 'Open Brave Browser page from Caboose modal.' })
+  window.closeAllOverlays()
   console.log('brave')
   setTimeout(function () { window.open('https://brave.com/cha553') }, 500)
 }
@@ -115,8 +138,8 @@ function gotoNewChar (evt) {
   if (evt) {
     evt.preventDefault()
   }
-  ga('send', 'event', { eventCategory: 'Conversion', eventAction: 'Caboose | New character', eventLabel: 'Reset to new character from Caboose.' })
-  closeAllOverlays()
+  window.ga('send', 'event', { eventCategory: 'Conversion', eventAction: 'Caboose | New character', eventLabel: 'Reset to new character from Caboose.' })
+  window.closeAllOverlays()
   setTimeout(function () {
     resetCharacter()
   }, 500)
@@ -131,21 +154,21 @@ function resetCharacter () {
   // Remove all groups.
   removeGroups()
   // Zoom out in case we were zoomed in.
-  zoomFull()
+  window.zoomFull()
   // reset silhouettes
   resetSilhouettes()
   // Clean hash.
   // Fade in SVG.
   // Clear 'c' variable.
-  c = new Character(choices)
+  c = new window.Character(choices)
   setTimeout(function () { fadeInSVG() }, 300)
   // launch anew.
   relaunch()
 }
 
 function relaunch () {
-  male = document.querySelector('#male_silhouette')
-  female = document.querySelector('#female_silhouette')
+  var male = document.querySelector('#male_silhouette')
+  var female = document.querySelector('#female_silhouette')
   male.style.opacity = '1'
   female.style.opacity = '1'
 }
@@ -156,7 +179,7 @@ function removeGroups () {
   var counter = groups.length
 
   while (counter--) {
-    if (groups[counter].id != 'female_silhouette' && groups[counter].id != 'male_silhouette') {
+    if (groups[counter].id !== 'female_silhouette' && groups[counter].id !== 'male_silhouette') {
       svgContainer.removeChild(groups[counter])
     }
   }
@@ -171,7 +194,7 @@ function hideMenus () {
   }
 }
 
-function fadeOutSVG () {
+function fadeOutSVG () {
   var svgContainer = document.querySelector('#svg1')
   var characterShadow = svgContainer.querySelector('.character-shadow.shine')
   var downloadBtn = document.querySelector('#downloadButton.enabled')
@@ -182,30 +205,33 @@ function fadeOutSVG () {
 
   if (downloadBtn) {
     downloadBtn.classList.remove('enabled')
-    downloadBtn.removeEventListener('click', download)
+    downloadBtn.removeEventListener('click', window.download)
   }
   svgContainer.classList.add('character--hide')
 }
 
-function fadeInSVG () {
+function fadeInSVG () {
   var svgContainer = document.querySelector('#svg1')
   svgContainer.classList.remove('character--hide')
 }
 
-function resetSilhouettes () {
+function resetSilhouettes () {
+  // var silhouette
   var defaultColor = '#e35a4e'
   var svgContainer = document.querySelector('#svg1')
   var maleSilhouette = svgContainer.querySelector('#path_male')
   var femaleSilhouette = svgContainer.querySelector('#path_female')
-  var silhouetteRemaining
+  // var silhouetteRemaining
 
+  /*
   if (svgContainer.classList.contains('select-female')) {
     silhouette = svgContainer.querySelector('#female_silhouette')
-    silhouetteRemaining = svgContainer.querySelector('#male_silhouette')
+    // silhouetteRemaining = svgContainer.querySelector('#male_silhouette')
   } else if (svgContainer.classList.contains('select-male')) {
     silhouette = svgContainer.querySelector('#male_silhouette')
-    silhouetteRemaining = svgContainer.querySelector('#female_silhouette')
+    // silhouetteRemaining = svgContainer.querySelector('#female_silhouette')
   }
+  */
   svgContainer.classList = ''
   maleSilhouette.style.fill = defaultColor
   femaleSilhouette.style.fill = defaultColor
@@ -218,24 +244,25 @@ function gotoLoadChar (evt) {
   if (evt) {
     evt.preventDefault()
   }
-  closeAllOverlays()
+  window.closeAllOverlays()
 }
 
 // The 'caboose' is the modal at the end of the character creation process.
-function caboose () {
+export function caboose () {
   var overlay = document.querySelector('.js-caboose')
   var closeBtn = overlay.querySelector('.close-btn')
 
-  closeAllOverlays()
+  window.closeAllOverlays()
 
   overlay.classList.add('overlay--show')
-  overlay.addEventListener('click', closeOverlay, true)
-  closeBtn.addEventListener('click', closeOverlay, false)
+  overlay.addEventListener('click', window.closeOverlay, true)
+  closeBtn.addEventListener('click', window.closeOverlay, false)
 }
 
 function layerHighlight (ev) {
-  var el = ev.target
-  var el = getGroupParent(el)
+  // var el = ev.target
+  // var el = getGroupParent(el)
+  var el = getGroupParent(ev.target)
   var masks = document.querySelectorAll('#contour use')
   var masksLen = masks.length
 
@@ -252,6 +279,7 @@ function layerHighlight (ev) {
   }
 }
 
+/*
 function getViewBoxOnClick (el) {
   var viewBox = '10 50 540 540'
   var svgContainer = document.querySelector('#svg1')
@@ -260,16 +288,18 @@ function getViewBoxOnClick (el) {
   console.log(el.getBoundingClientRect())
   return viewBox
 }
+*/
 
 function clickSelect (ev) {
-  var el = ev.target
-  var viewBox = getViewBoxOnClick(el)
-  var el = getGroupParent(el)
+  // var viewBox = getViewBoxOnClick(el)
+  // var el = ev.target
+  // var el = getGroupParent(el)
+  var el = getGroupParent(ev.target)
   // console.log('el',el);
   // console.log('viewBox',viewBox);
   // TODO check if style selection screen, return
   var formSection
-  var sidebarLeft = document.querySelector('#sidebar-left')
+  // var sidebarLeft = document.querySelector('#sidebar-left')
   var sectionList = document.querySelectorAll('section.accordeon__section-label')
   var isClosed
   var sectionLabel
@@ -288,7 +318,7 @@ function clickSelect (ev) {
   formSection = fromPrefixGetFormSection(prefix)
 
   if (prefix === 'svg1') {
-    zoomFull()
+    window.zoomFull()
     return
   }
 
@@ -298,12 +328,12 @@ function clickSelect (ev) {
   // Same thing for item thumbnails, if not open, open them.
   if (formSection > -1) {
     sectionLabel = sectionList[formSection].querySelector('.accordeon__section-title__text').innerHTML
-    sectionZoom(sectionLabel)
+    window.sectionZoom(sectionLabel)
     isClosed = sectionList[formSection].nextSibling.classList.contains('section--hide')
-    closeSections(sectionList[formSection])
+    window.closeSections(sectionList[formSection])
 
     if (isClosed) {
-      showSection(sectionList[formSection])
+      window.showSection(sectionList[formSection])
     }
     // Get Prefix Index;
     prefixIndex = getSectionButton(formSection, prefix)
@@ -311,20 +341,21 @@ function clickSelect (ev) {
     if (prefixIndex > -1) {
       itemButtonList = sectionList[formSection].nextSibling.querySelectorAll('li.sbl__option')
       itemButton = itemButtonList[prefixIndex]
-      hideColorPicker()
-      openThumbsLogic(itemButton)
+      window.hideColorPicker()
+      window.openThumbsLogic(itemButton)
     }
   }
 }
 
 function getSectionButton (formSection, prefix) {
+  var formList
   var keyCounter = 0
   if (c.choices.sex === 'm') {
     formList = window.maleFormList
   } else {
     formList = window.femaleFormList
   }
-  for (key in formList[formSection]) {
+  for (var key in formList[formSection]) {
     if (prefix === key.toLowerCase()) {
       return keyCounter
     }
@@ -349,7 +380,7 @@ function getLayers () {
 
 function getGroupParent (el) {
   var layers = getLayers()
-  while (layers.indexOf(el.id) === -1 && el.tagName != 'svg') {
+  while (layers.indexOf(el.id) === -1 && el.tagName !== 'svg') {
     el = el.parentNode
   }
   return el
@@ -414,10 +445,10 @@ function fromItemGetPrefix (id) {
 
 function fromPrefixGetFormSection (prefix) {
   console.log('prefix', prefix)
-  var item
+  // var item
   var formSection
   var counterForm
-  var counterSection
+  // var counterSection
   var formList
 
   if (c.choices.sex === 'm') {
@@ -427,6 +458,7 @@ function fromPrefixGetFormSection (prefix) {
   }
   console.log('formList', formList)
 
+  var key
   while (formSection === undefined) {
     counterForm = formList.length
 
@@ -446,25 +478,26 @@ function startup () {
   if (currentUser && currentUser.cc && currentUser.cc.personnages && currentUser.cc.personnageActuel) {
     choices = currentUser.cc.personnages[currentUser.cc.personnageActuel]
   }
-  window.c = new Character(choices)
-  interpretHash()
+  window.c = new window.Character(choices)
+  window.interpretHash()
 }
 
 function launch () {
-  c.choices.sex = hash.get('sex')
-  var sex = c.choices.sex
+  c.choices.sex = window.hash.get('sex')
+  // var sex = c.choices.sex
   var multiLayer = getMultiLayer()
   var hairLayers = getHairLayers()
   var skinLayers = getSkinLayers()
 
-  if (sex === 'm') {
+  /*
+  if (c.choices.sex === 'm') {
     var form1 = maleForm1
     var form2 = maleForm2
     var form3 = maleForm3
     var form4 = maleForm4
     var form5 = maleForm5
     var form6 = maleForm6
-    var layerDirectory = layerDirectoryMale
+    // var layerDirectory = layerDirectoryMale
   } else {
     var form1 = femaleForm1
     var form2 = femaleForm2
@@ -472,21 +505,28 @@ function launch () {
     var form4 = femaleForm4
     var form5 = femaleForm5
     var form6 = femaleForm6
-    var layerDirectory = layerDirectoryFemale
+    // var layerDirectory = layerDirectoryFemale
   }
-  window.forms = [form1, form2, form3, form4, form5, form6]
+  */
+
+  // window.forms = [form1, form2, form3, form4, form5, form6]
+  // window.forms = (c.choices.sex === 'm') ? window.maleFormList : window.femaleFormList
+  forms = (c.choices.sex === 'm') ? window.maleFormList : window.femaleFormList
+
   // Get all the hash key/value pairs and include them in the c.choices object
   // Go through all the forms
-  parseHash(c, forms, skinLayers, hairLayers) // Hashed elements are added in the character object
-  choicesToList(c)
-  toBeShown = choicesToLayers(c, multiLayer)
-  Promise.resolve().then(function () { loadFilesFromList(toBeShown) }).then(function () { onAllLoaded() }).then(function () { applyClipPath() })
+  window.parseHash(c, forms, skinLayers, hairLayers) // Hashed elements are added in the character object
+  window.choicesToList(c)
+  var toBeShown = window.choicesToLayers(c, multiLayer)
+
+  // FIXME: Promises promises...
+  Promise.resolve().then(function () { window.loadFilesFromList(toBeShown) }).then(function () { window.onAllLoaded() }).then(function () { window.applyClipPath() })
 }
 
-function displayPallette () {
-  var hashSkinColor = hash.get('skinColor')
+function displayPalette () {
+  var hashSkinColor = window.hash.get('skinColor')
 
-  if (hashSkinColor != undefined) {
+  if (hashSkinColor !== undefined) {
     launch()
     // console.log('hashSkinColor', hashSkinColor);
     // colorCutout(hashSkinColor);
@@ -501,7 +541,7 @@ function chooseSkinColor () {
   var gmenu = document.querySelector('.skin-color__container')
 
   if (!gmenu.firstChild) {
-    for (color in skinTones) {
+    for (var color in skinTones) {
       var newColor = skinTones[color]
       var node = document.createElement('LI')
       node.className = 'skin-tone'
@@ -516,7 +556,7 @@ function chooseSkinColor () {
 
 function defaultPupilShape () {
   c.choices.pupils = 'round'
-  hash.add({ pupils: 'round' })
+  window.hash.add({ pupils: 'round' })
 }
 
 function colorOnHover () {
@@ -527,34 +567,41 @@ function colorOnHover () {
   malePath.style.fill = newTone
 }
 
+/*
 function colorSilhouette () {
   var malePath = document.getElementById('path_male')
   var femalePath = document.getElementById('path_female')
-  var newTone = hash.get('skinColor')
+  var newTone = window.hash.get('skinColor')
   femalePath.style.fill = newTone
   malePath.style.fill = newTone
   femalePath.style.pointerEvents = 'none'
   malePath.style.pointerEvents = 'none'
 }
+*/
 
-function colorCutout (newColor) {
+// function colorCutout (newColor) {
+function colorCutout () {
   var rgb = this.style.backgroundColor
-  var newColor = rgb2hex(rgb)
+  var newColor = window.rgb2hex(rgb)
+  /*
   var colorCards = document.getElementsByClassName('.skin-tone')
   var maleSilhouette = document.getElementById('male_silhouette')
   var femaleSilhouette = document.getElementById('female_silhouette')
   var lg = document.getElementsByClassName('lg')
-  var obj = new Array()
+  */
+
+  var obj = []
   obj.skinColor = newColor
   var gmenu = document.querySelector('.skin-color__container')
 
   gmenu.classList.remove('skin-color__container--show')
-  hash.add(obj)
-  defaultEyeColor(newColor)
-  defaultHairColor(newColor)
+  window.hash.add(obj)
+
+  window.defaultEyeColor(newColor)
+  window.defaultHairColor(newColor)
   defaultPupilShape()
 
-  ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Color', eventLabel: 'Select color' })
+  window.ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Color', eventLabel: 'Select color' })
 
   addDecency()
   addTopicalItem()
@@ -583,18 +630,18 @@ function selectMale (event) {
   if (maleSilhouette) {
     maleSilhouette.removeEventListener('click', selectMale, false)
   }
-  hash.add({ sex: 'm' })
-  var malePath = document.getElementById('path_male')
+  window.hash.add({ sex: 'm' })
+  // var malePath = document.getElementById('path_male')
 
   mainSVG.classList.add('select-male')
   shadow.classList.add('shine')
 
   if (event) {
-    ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Male', eventLabel: 'Select male template' })
+    window.ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Male', eventLabel: 'Select male template' })
   }
 
   setTimeout(function () {
-    displayPallette()
+    displayPalette()
   }, 350)
 }
 
@@ -608,7 +655,7 @@ function addDecency () {
     // TODO add underwear here.
   } else if (sex === 'f') {
     // TODO add underwear here.
-    hash.add({ bra: 'bow' })
+    window.hash.add({ bra: 'bow' })
   }
 }
 
@@ -628,21 +675,22 @@ function selectFemale (event) {
   if (femaleSilhouette) {
     femaleSilhouette.removeEventListener('click', selectFemale, false)
   }
-  hash.add({ sex: 'f' })
-  var femaleSilhouette = document.getElementById('female_silhouette')
-  var femalePath = document.getElementById('path_female')
+  window.hash.add({ sex: 'f' })
+  // var femaleSilhouette = document.getElementById('female_silhouette')
+  // var femalePath = document.getElementById('path_female')
   mainSVG.classList.add('select-female')
   shadow.classList.add('shine')
 
   if (event) {
-    ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Female', eventLabel: 'Select female template' })
+    window.ga('send', 'event', { eventCategory: 'Navigation', eventAction: 'Female', eventLabel: 'Select female template' })
   }
 
   setTimeout(function () {
-    displayPallette()
+    displayPalette()
   }, 350)
 }
 
+/*
 function presentFaceStyles () {
   var sex = c.choices.sex
   console.log('sex', sex)
@@ -691,7 +739,9 @@ function presentFaceStyles () {
 
   // launch();
 }
+*/
 
+/*
 function selectStyleWestern () {
   console.log('selectStyleWestern')
 
@@ -707,3 +757,4 @@ function selectStyleAnime () {
 
   // launch();
 }
+*/
