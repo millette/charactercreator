@@ -1,6 +1,7 @@
 // TODO: import { replaceMultilayer } from form.js
 
-export function purgeHiddenLayers () {
+function purgeHiddenLayers () {
+// export function purgeHiddenLayers () {
   var option = document.querySelector('#content_1 .selected--option')
   if (!option) { return }
   // var section = option.classList[2].slice(9)
@@ -23,7 +24,8 @@ export function purgeHiddenLayers () {
   }
 }
 
-export function showPupilObject (object, shape) {
+function showPupilObject (object, shape) {
+// export function showPupilObject (object, shape) {
   var pupils = object.querySelectorAll('.pupil')
   // var shown = object.querySelectorAll('.pupil--' + shape)
   var counter = pupils.length
@@ -38,7 +40,8 @@ export function showPupilObject (object, shape) {
   return object
 }
 
-export function clearCharacter () {
+function clearCharacter () {
+// export function clearCharacter () {
   var svgContainer = document.querySelector('#svg1 .character-container')
   // Clear only what's in .current-character
   var toBeRemovedList = document.querySelectorAll('#svg1 .character-container > g')
@@ -66,7 +69,8 @@ function resetCharacterTemplate () {
 }
 */
 
-export function findNextLayerInDom (item) {
+function findNextLayerInDom (item) {
+// export function findNextLayerInDom (item) {
   var sex = window.c.choices.sex
   var svgContainer = document.querySelector('#svg1 .character-container')
   // TODO search within .current-character
@@ -91,7 +95,8 @@ export function findNextLayerInDom (item) {
   return nextLayerSibling
 }
 
-export function bodyTypesToLayers (type) {
+function bodyTypesToLayers (type) {
+// export function bodyTypesToLayers (type) {
   var layers = []
 
   layers.push('body_torso_' + type)

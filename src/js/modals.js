@@ -10,7 +10,8 @@ function closeAllOverlays () {
   }
 }
 
-export function showAbout (ev) {
+function showAbout (ev) {
+// export function showAbout (ev) {
   ev.preventDefault()
   var overlay = document.querySelector('.js-about')
   var closeBtn = overlay.querySelector('.close-btn')
@@ -21,7 +22,8 @@ export function showAbout (ev) {
   closeBtn.addEventListener('click', closeOverlay, false)
 }
 
-export function showFAQ (ev) {
+function showFAQ (ev) {
+// export function showFAQ (ev) {
   ev.preventDefault()
   var overlay = document.querySelector('.js-faq')
   var closeBtn = overlay.querySelector('.close-btn')
@@ -46,7 +48,8 @@ export function showShop (ev) {
 }
 */
 
-export function showDownloadOptions (ev) {
+function showDownloadOptions (ev) {
+// export function showDownloadOptions (ev) {
   ev.preventDefault()
   var overlay = document.querySelector('.js-download-options')
   var closeBtn = overlay.querySelector('.close-btn')
@@ -57,7 +60,8 @@ export function showDownloadOptions (ev) {
   closeBtn.addEventListener('click', closeOverlay, false)
 }
 
-export function logoutUI () {
+function logoutUI () {
+// export function logoutUI () {
   var pageWrap = document.querySelector('.logged')
   if (pageWrap) {
     pageWrap.classList.remove('logged')
@@ -65,7 +69,8 @@ export function logoutUI () {
   }
 }
 
-export function loginMenu (evt) {
+function loginMenu (evt) {
+// export function loginMenu (evt) {
   if (evt) {
     evt.preventDefault()
   }
@@ -130,7 +135,8 @@ function clearInputFields () {
   }
 }
 
-export function clearInputUsername () {
+function clearInputUsername () {
+// export function clearInputUsername () {
   var currentOverlay = document.querySelector('.overlay--show')
   var inputUsername = currentOverlay.querySelectorAll('.overlay__input__username')
   inputUsername[0].value = ''

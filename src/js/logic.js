@@ -9,7 +9,8 @@
 // TODO: import { changeClipPathOnEyes } from clippaths.js
 
 // Change sex of character from male to female or vice versa.
-export function trans (sex) {
+function trans (sex) {
+// export function trans (sex) {
   if (window.c.choices.sex === sex) { return }
   var characterSVG = document.querySelector('#svg1 .character-container')
   characterSVG.classList.add('character--hide')
@@ -55,7 +56,8 @@ function resetForms () {
   window.showSidebarLeft()
 }
 
-export function Character (choices) {
+function Character (choices) {
+// export function Character (choices) {
   this.choices = choices || {
     emotion: 'neutral',
     body: 'default', // Or 'default' or 'veiny'.
@@ -158,7 +160,8 @@ function getOptions (section) {
   }
 }
 
-export function show (userChoice, category) {
+function show (userChoice, category) {
+// export function show (userChoice, category) {
   var multiLayer = window.getMultiLayer()
   var sections
   if (typeof (category) === 'string') {
@@ -287,7 +290,8 @@ function getBodyLayers (bodySuffix) {
   return bodyLayers
 }
 
-export function getAllBodyLayers () {
+function getAllBodyLayers () {
+// export function getAllBodyLayers () {
   var layers = window.getSectionLayersList('body')
   var counter = layers.length
   var bodyParts
@@ -321,9 +325,16 @@ function sectionHide (multiLayer, id) {
   var sectionToHide
 
   // FIXME: where does lyr come from??? See 'id' argument...
+
+  /*
   if (id.slice(1) === multiLayer[lyr][0]) {
     for (var i = 1; i <= multiLayer[lyr][1]; i++) {
       sectionToHide = svgContainer.querySelector(id + '_' + i + '_of_' + multiLayer[lyr][1])
+  */
+
+  if (id.slice(1) === multiLayer[id][0]) {
+    for (var i = 1; i <= multiLayer[id][1]; i++) {
+      sectionToHide = svgContainer.querySelector(id + '_' + i + '_of_' + multiLayer[id][1])
       if (sectionToHide != null) {
         sectionToHide.style.opacity = 0
         sectionToHide.style.pointerEvents = 'none'

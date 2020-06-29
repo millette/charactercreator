@@ -248,7 +248,8 @@ function gotoLoadChar (evt) {
 }
 
 // The 'caboose' is the modal at the end of the character creation process.
-export function caboose () {
+function caboose () {
+// export function caboose () {
   var overlay = document.querySelector('.js-caboose')
   var closeBtn = overlay.querySelector('.close-btn')
 

@@ -45,7 +45,8 @@ function colorSkin (color) {
 }
 */
 
-export function colorElement (el) {
+function colorElement (el) {
+// export function colorElement (el) {
   var id = el.id.split('_')
   var section = id[0]
   var item = id[1]
@@ -211,7 +212,8 @@ function getColorClassPrefix (id) {
   return prefix
 }
 
-export function colorize (formId, _color) {
+function colorize (formId, _color) {
+// export function colorize (formId, _color) {
   var fullId
   var myKey
   var i

@@ -1,4 +1,5 @@
-export function getViewBox (t, d) {
+function getViewBox (t, d) {
+// export function getViewBox (t, d) {
   var id = t + '_' + d
   var sex = window.c.choices.sex
   var idDict

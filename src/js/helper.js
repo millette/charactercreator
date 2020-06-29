@@ -1,4 +1,5 @@
-export function getParent (el, sel) {
+function getParent (el, sel) {
+// export function getParent (el, sel) {
   if ((el.matches || el.matchesSelector).call(el, sel)) {
     return el
   };
@@ -12,15 +13,18 @@ function hasClass (element, className) {
 }
 */
 
-export function isInArray (value, array) {
+function isInArray (value, array) {
+// export function isInArray (value, array) {
   return array.indexOf(value) > -1
 }
 
-export function capitalizeFirstLetter (string) {
+function capitalizeFirstLetter (string) {
+// export function capitalizeFirstLetter (string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-export function rgb2hex (rgb) {
+function rgb2hex (rgb) {
+// export function rgb2hex (rgb) {
   rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i)
   return (rgb && rgb.length === 4) ? '#' +
   ('0' + parseInt(rgb[1], 10).toString(16)).slice(-2) +
@@ -28,7 +32,8 @@ export function rgb2hex (rgb) {
   ('0' + parseInt(rgb[3], 10).toString(16)).slice(-2) : ''
 }
 
-export function getPosition (el) {
+function getPosition (el) {
+// export function getPosition (el) {
   var xPos = 0
   var yPos = 0
 

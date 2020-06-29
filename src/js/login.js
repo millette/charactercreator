@@ -176,7 +176,8 @@ function showErrorUsernameTaken (username) {
   window.clearInputUsername()
 }
 
-export function whoami (ev) {
+function whoami (ev) {
+// export function whoami (ev) {
   ev.preventDefault()
   var overlay = document.querySelector('.js-character-list')
   var closeBtn = overlay.querySelector('.close-btn')
@@ -186,7 +187,8 @@ export function whoami (ev) {
   closeBtn.addEventListener('click', window.closeOverlay, false)
 }
 
-export function logout (ev) {
+function logout (ev) {
+// export function logout (ev) {
   ev.preventDefault()
   deleteDbSession()
     .then(function (json) {
@@ -202,7 +204,8 @@ export function logout (ev) {
   window.logoutUI()
 }
 
-export function login (evt) {
+function login (evt) {
+// export function login (evt) {
   evt.preventDefault()
   var event = evt
   var username = event.target.children[0].lastElementChild.value
@@ -360,7 +363,8 @@ function switchCharacter (evt) {
     })
 }
 
-export function revealCharacter () {
+function revealCharacter () {
+//export function revealCharacter () {
   var characterSVG = document.querySelector('#svg1')
   characterSVG.classList.remove('character--hide')
 }
@@ -423,7 +427,8 @@ function resetCharacters () {
   })
 }
 
-export function registerMenu () {
+function registerMenu () {
+// export function registerMenu () {
   var loginMenu22 = document.querySelector('.js-login')
   var overlay = document.querySelector('.js-register')
   var registerForm = document.querySelector('#register-form')
@@ -529,7 +534,8 @@ function setHashTrigger () {
   window.addEventListener('hashchange', triggerSaveBtn, false)
 }
 
-export function triggerSaveBtn () {
+function triggerSaveBtn () {
+// export function triggerSaveBtn () {
   var saveBtn = document.querySelector('.save-btn')
   if (saveBtn) {
     saveBtn.classList.add('save--enabled')

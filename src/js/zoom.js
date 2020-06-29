@@ -51,7 +51,8 @@ function zoomFace () {
   animateZoom(newViewBox)
 }
 
-export function zoomTwoFaces () {
+function zoomTwoFaces () {
+// export function zoomTwoFaces () {
   // var landscape = isLandscape() // TODO change newViewBox is in landscape mode.
   // var sex = c.choices.sex
   var newViewBox
@@ -98,7 +99,8 @@ function zoomFull () {
   animateZoom(newViewBox)
 }
 
-export function viewBoxZoom (ev) {
+function viewBoxZoom (ev) {
+// export function viewBoxZoom (ev) {
   var zoomLevel = parseInt(ev.target.value, 10)
   if (zoomLevel === 3) {
     zoomFace()
@@ -111,7 +113,8 @@ export function viewBoxZoom (ev) {
   }
 }
 
-export function sectionZoom (sectionLabel) {
+function sectionZoom (sectionLabel) {
+// export function sectionZoom (sectionLabel) {
   var zoomInput = document.querySelector('#zoomLevel')
   if (sectionLabel === 'Head') { zoomInput.value = 3; zoomFace() }
   if (sectionLabel === 'Accessories') { zoomInput.value = 3; zoomFace() }

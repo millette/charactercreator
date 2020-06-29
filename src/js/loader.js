@@ -3,7 +3,8 @@
 // TODO: import { revealCharacter } from login.js
 // TODO: import { bodyTypesToLayers } from layers.js
 
-export function onAllLoaded () {
+function onAllLoaded () {
+// export function onAllLoaded () {
   var zoomContainer = document.querySelector('.zoom-container')
   var maleSilhouette = document.getElementById('male_silhouette')
   var femaleSilhouette = document.getElementById('female_silhouette')
@@ -37,7 +38,8 @@ export function onAllLoaded () {
   zoomContainer.classList.add('zoom-container--show')
 }
 
-export function processSection (section, item) {
+function processSection (section, item) {
+// export function processSection (section, item) {
   if ((section === 'body' || section === 'ears' || section === 'nose' || section === 'eyes' || section === 'age' || section === 'freckles' || section === 'sockets' || section === 'scar' || section === 'wings') && item === 'devil') {
     section = 'skin'
   }
@@ -82,7 +84,8 @@ Object.size = function (obj) {
 }
 */
 
-export function choicesToList (c) {
+function choicesToList (c) {
+// export function choicesToList (c) {
   // TODO: NOP???
   /*
   var layersList = []
@@ -102,7 +105,8 @@ export function choicesToList (c) {
   */
 }
 
-export function choicesToLayers (c, multiLayer) {
+function choicesToLayers (c, multiLayer) {
+// export function choicesToLayers (c, multiLayer) {
   var selectedLayers = []
   // var emotionLayers = fromEmotionGetLayers(c.choices.emotion)
   var choiceLayers = []

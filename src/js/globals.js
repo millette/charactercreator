@@ -57,7 +57,9 @@ var maleForm6 = {
   Socks: ['', 'socks'],
   Shoes: ['', 'cowboy', 'hightops', 'leather', 'loafers', 'flip-flops', 'moon']
 }
-export var layersMale = [
+
+var layersMale = [
+// export var layersMale = [
   'wings_angel', 'wings_devil', 'wings_fairy', 'wings_skeleton',
   'shoulderpads_spikes_2_of_2',
   'cloak_default_4_of_4', 'cloak_dracula_2_of_2',
@@ -221,7 +223,9 @@ var femaleForm6 = {
   Leggings: ['', 'fishnet', 'regular', 'striped', 'torn'],
   Shoes: ['', 'cowboy', 'flip-flops', 'hightops', 'highheels', 'moon', 'plateforms', 'sandals_roman']
 }
-export var layersFemale = [
+
+var layersFemale = [
+// export var layersFemale = [
   'wings_devil', 'wings_angel', 'wings_fairy', 'wings_skeleton',
   'shoulderpads_spikes_2_of_2',
   'pet_doge', 'pet_vulture', 'pet_parrot', 'pet_feline', 'pet_raven', 'pet_rat', 'pet_canine', 'pet_siamese_cat', 'pet_gerbil', 'pet_chicken', 'pet_fox',
@@ -320,9 +324,14 @@ export var layersFemale = [
 ]
 
 // Color Palettes
-export var fabricPalette = ['#25282f', '#494a52', '#323346', '#6f7581', '#c3c3c5', '#ece9ec', '#f3e3d4', '#434d71', '#f4e2c1', '#ba855e', '#b19f92', '#9e9888']
-export var layerDirectoryFemale = 'layer/female/'
-export var layerDirectoryMale = 'layer/male/'
+var fabricPalette = ['#25282f', '#494a52', '#323346', '#6f7581', '#c3c3c5', '#ece9ec', '#f3e3d4', '#434d71', '#f4e2c1', '#ba855e', '#b19f92', '#9e9888']
+// export var fabricPalette = ['#25282f', '#494a52', '#323346', '#6f7581', '#c3c3c5', '#ece9ec', '#f3e3d4', '#434d71', '#f4e2c1', '#ba855e', '#b19f92', '#9e9888']
+
+var layerDirectoryFemale = 'layer/female/'
+// export var layerDirectoryFemale = 'layer/female/'
+
+var layerDirectoryMale = 'layer/male/'
+// export var layerDirectoryMale = 'layer/male/'
 
 /*
 var size = function (obj) {

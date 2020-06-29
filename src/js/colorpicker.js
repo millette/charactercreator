@@ -2,12 +2,14 @@
 // TODO: import { getSectionLayersList, replaceMultilayer } from form.js
 // TODO: import { colorize } from colorize.js
 
-export function addColorPicker () {
+// export function addColorPicker () {
+function addColorPicker () {
   var section = document.querySelector('.section--selected').innerHTML.toLowerCase()
   getColor(section)
 }
 
-export function hideColorPicker () {
+function hideColorPicker () {
+// export function hideColorPicker () {
   var colorPicker = document.querySelector('.colorpicker-wrapper')
   if (colorPicker && !colorPicker.classList.contains('section--hide')) {
     colorPicker.classList.add('section--hide')

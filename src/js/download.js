@@ -50,7 +50,8 @@ function getSVG () {
   return text
 }
 
-export function download (ev) {
+function download (ev) {
+// export function download (ev) {
   ev.preventDefault()
 
   // FIXME: if ga() doesn't exist because an adblocker, make sure we have a stub (NOP) for it.

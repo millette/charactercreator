@@ -1,4 +1,5 @@
-export function defaultEyeColor (skinColor) {
+function defaultEyeColor (skinColor) {
+// export function defaultEyeColor (skinColor) {
   var eyeColorDict = {
     '#ffdfc4': '#6F918A', // Grey
     '#f0d5be': '#FF6600', // Amber
@@ -31,7 +32,8 @@ export function defaultEyeColor (skinColor) {
   window.hash.add({ irisColor: eyeColor })
 }
 
-export function defaultHairColor (skinColor) {
+function defaultHairColor (skinColor) {
+// export function defaultHairColor (skinColor) {
   var hairColorDict = {
     '#ffdfc4': '#803300', // Light brown
     '#f0d5be': '#803300', // Light brown

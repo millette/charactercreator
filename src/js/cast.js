@@ -1,13 +1,15 @@
 // TODO: import { updateDbUser, manageCharacters } from login.js
 
-export function newChar () {
+function newChar () {
+// export function newChar () {
   var newCard = document.querySelector('.js-new-card')
   var firstInput = newCard.querySelector('.first-input')
   newCard.classList.add('overlay__char-new--create')
   firstInput.focus()
 }
 
-export function createChar (evt) {
+function createChar (evt) {
+// export function createChar (evt) {
   if (evt) {
     evt.preventDefault()
   }

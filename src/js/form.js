@@ -9,7 +9,8 @@
 // TODO: import { showPupilObject, findNextLayerInDom } from layers.js
 // TODO: import { sectionZoom } from zoom.js
 
-export function createForm (sex, forms) {
+function createForm (sex, forms) {
+// export function createForm (sex, forms) {
   var svgContent = ''
   var itemsThumbsContent = document.querySelector('#content_1')
 
@@ -139,7 +140,8 @@ function getSectionsFromIdMultiLayer (multiLayer, tempId) {
   return sections
 }
 
-export function getSectionLayersList (section) {
+function getSectionLayersList (section) {
+// export function getSectionLayersList (section) {
   var formList
   var formCounter
   var itemList
@@ -203,7 +205,8 @@ function replaceMultilayer (layersList, section) {
   return fullList
 }
 
-export function loadSectionLayers (section, layersList, callback, callbackLoopFlag) {
+function loadSectionLayers (section, layersList, callback, callbackLoopFlag) {
+// export function loadSectionLayers (section, layersList, callback, callbackLoopFlag) {
   var tempLayerList = []
   var layerCounter
   layerCounter = layersList.length

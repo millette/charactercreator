@@ -3,7 +3,8 @@
 // TODO: import { purgeHiddenLayers, showPupilObject } from "layers.js"
 
 // Functions for the thumbnails in the right sidebar.
-export function openThumbs () {
+function openThumbs () {
+// export function openThumbs () {
   // FIXME: import...
   window.hideColorPicker()
   // var _ = this

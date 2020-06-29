@@ -1,6 +1,7 @@
 // TODO: import { closeAllOverlays } from modals.js
 
-export function rollCredits (evt) {
+// export function rollCredits (evt) {
+function rollCredits (evt) {
   if (evt) {
     evt.preventDefault()
   }

@@ -36,7 +36,8 @@
 })(window)
 */
 
-export function parseHash (c, forms, skinLayers, hairLayers) {
+function parseHash (c, forms, skinLayers, hairLayers) {
+// export function parseHash (c, forms, skinLayers, hairLayers) {
   newParseHash()
   var formsLength = forms.length
   var formsCounter = formsLength
@@ -134,7 +135,8 @@ function newParseHash () {
   }
 }
 
-export function hashCharacter () {
+function hashCharacter () {
+// export function hashCharacter () {
   // FIXME: import...
   var u = window.currentUser.cc.personnages[window.currentUser.cc.personnageActuel]
   var r
@@ -178,7 +180,8 @@ function personnageActuelToHash (currentUser) {
   }
 }
 
-export function interpretHash () {
+function interpretHash () {
+// export function interpretHash () {
   var hashSex = window.hash.get('sex')
   if (hashSex === 'm') {
     // FIXME: import...

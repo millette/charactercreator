@@ -1,4 +1,5 @@
-export function changeClipPathOnEyes (id) {
+function changeClipPathOnEyes (id) {
+// export function changeClipPathOnEyes (id) {
   // var emotion = id.slice(1).split('_')[1]
   var svgContainer = document.querySelector('#svg1 .character-container')
   var eyeRight = svgContainer.querySelector('#eye_right')
@@ -9,7 +10,8 @@ export function changeClipPathOnEyes (id) {
   }
 }
 
-export function applyClipPath () {
+function applyClipPath () {
+// export function applyClipPath () {
   setTimeout(function () {
     // FIXME: import ...
     changeClipPathOnEyes('#eyes_' + window.c.choices.emotion)
