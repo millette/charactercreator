@@ -320,7 +320,7 @@ function sectionHide (multiLayer, id) {
   var svgContainer = document.querySelector('#svg1')
   var sectionToHide
 
-  // FIXME: where does lyr come from???
+  // FIXME: where does lyr come from??? See 'id' argument...
   if (id.slice(1) === multiLayer[lyr][0]) {
     for (var i = 1; i <= multiLayer[lyr][1]; i++) {
       sectionToHide = svgContainer.querySelector(id + '_' + i + '_of_' + multiLayer[lyr][1])
